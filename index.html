@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+
+<body>
+    <div class="fixed">
+        <div class="scroll-top">
+            <div class="scroll-top-icon">
+                <i class="fa-solid fa-circle-chevron-up"></i>
+            </div>
+        </div>
+        <div class="fixtoolbar">
+            <div class="tool-option">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="tool-option">
+                <i class="fa-solid fa-address-book"></i>
+            </div>
+            <div class="tool-option">
+                <i class="fa-solid fa-comments"></i>
+            </div>
+        </div>
+        <div class="chat">
+            <div class="container">
+                <i class="fa-solid fa-comment"></i>
+            </div>
+        </div>
+    </div>
+    <div class="side-by-side">
+        <div class="nev-section">
+
+            <div class="nev">
+                <div class="nev-sec spacial">
+                    <div class="logo">
+                        <img class="logo-img" src="img/demo-icon.webp">
+                    </div>
+                    <div class="page-name">
+                        Crypto
+                    </div>
+                </div>
+                <div class="nev-sec exception">
+                    <div class="dev">
+                        <img class="dev-img" src="img/images.png" alt="Profile Image">
+                    </div>
+                    <div class="dev-name">
+                        Sujal Patel
+                    </div>
+                    <div class="nev-icon">
+                        <i class="i fa-solid fa-envelope"></i>
+                        <i class="i fa-solid fa-comment"></i>
+                        <i class="i fa-solid fa-right-from-bracket"></i>
+                    </div>
+                </div>
+                <div class="nev-secv">
+                    <div class="nev-option selected">
+                        <div class="option-icon"><i class="i fa-solid fa-house"></i></div>
+                        <div class="option-title">Dashboard</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-calendar-check"></i></div>
+                        <div class="option-title">Appointments</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-folder-open"></i></div>
+                        <div class="option-title">Cases</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-gavel"></i></div>
+                        <div class="option-title">Attorney</div>
+                    </div>
+                    <div class="nev-option div">
+                        COMPONENTS
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div class="option-title">Features</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-box-archive"></i></div>
+                        <div class="option-title">Form, Table and Charts</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-soap"></i></div>
+                        <div class="option-title">Apps and Widgets</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-circle-check"></i></div>
+                        <div class="option-title">Authentication</div>
+                    </div>
+                    <div class="nev-option">
+                        <div class="option-icon"><i class="i fa-solid fa-circle-exclamation"></i></div>
+                        <div class="option-title">Miscellaneous</div>
+                    </div>
+                </div>
+                <div class="nev-sec"></div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="top-bar">
+                <div class="nev-btn selected">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </div>
+            </div>
+            <div class="card-box">
+                <div class="card1 card">
+                    <div class="title-chart">Total Cases</div>
+                    <div class="chart-area">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                </div>
+                <div class="card2 card">
+                    <div class="title-chart">Settled Cases</div>
+                    <div class="chart-area">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+                <div class="card3 card">
+                    <div class="title-chart">Votes</div>
+                    <div class="chart-area">
+                        <canvas id="myChart3"></canvas>
+                    </div>
+                </div>
+                <div class="card4 card">
+                    <div class="title-chart">Opportunity Outcome</div>
+                    <div class="chart-area">
+                        <canvas id="myChart4"></canvas>
+                    </div>
+                </div>
+                <div class="card5 card">
+                    <div class="title-chart">Earning this month</div>
+                    <div class="chart-area">
+                        <canvas id="myChart5"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-box2">
+                <div class="card6 card">
+                    <div class="title-chart">Revenue</div>
+                    <div class="chart-area">
+                        <canvas id="myChart6"></canvas>
+                    </div>
+                </div>
+                <div class="card7 card">
+                    <div class="title-chart">Outcomes by Opportunity Source</div>
+                    <div class="chart-area">
+                        <canvas id="myChart7"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title-chart">Ongoing Cases</div>
+                <div class="chart-area">
+                    <table class="ongoing">
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="image">
+                                <image src="img/images.png" alt="img" class="img"></image>
+                            </td>
+                            <td class="name">
+                                <div class="title">
+                                    Prince Jhon
+                                </div>
+                                <div class="sub-title">
+                                    prince@king.com
+                                </div>
+                            </td>
+                            <td class="type">
+                                <div class="sub-title">Case Type</div>
+                                <div class="title">Business Litigation</div>
+                            </td>
+                            <td class="att">
+                                <div class="sub-title">Attorney</div>
+                                <div class="title">Mical Lobani</div>
+                            </td>
+                            <td class="hear">
+                                <div class="backfill">3 Hearing</div>
+                            </td>
+                            <td class="operation1">
+                                <div class="op">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </div>
+                            </td>
+                            <td class="operation2">
+                                <div class="op">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-box">
+                <div class="card1 card">
+                    <div class="title-chart">Latest Matters</div>
+                    <div class="chart-area">
+                        <table class="sub-table">
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Matter Name</div>
+                                    <div class="sub-title">Matter Type</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Matter Name</div>
+                                    <div class="sub-title">Matter Type</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Matter Name</div>
+                                    <div class="sub-title">Matter Type</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Matter Name</div>
+                                    <div class="sub-title">Matter Type</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Matter Name</div>
+                                    <div class="sub-title">Matter Type</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Matter Name</div>
+                                    <div class="sub-title">Matter Type</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card2 card">
+                    <div class="title-chart">Latest task</div>
+                    <div class="chart-area">
+                        <table class="sub-table">
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Task Name</div>
+                                    <div class="sub-title">Task Type</div>
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" class="radio">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Task Name</div>
+                                    <div class="sub-title">Task Type</div>
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" class="radio">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Task Name</div>
+                                    <div class="sub-title">Task Type</div>
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" class="radio">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Task Name</div>
+                                    <div class="sub-title">Task Type</div>
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" class="radio">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Task Name</div>
+                                    <div class="sub-title">Task Type</div>
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" class="radio">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Task Name</div>
+                                    <div class="sub-title">Task Type</div>
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" class="radio">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card3 card">
+                    <div class="title-chart">New Members</div>
+                    <div class="chart-area">
+                        <table class="sub-table">
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Member Name</div>
+                                    <div class="sub-title">Member Type</div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Member Name</div>
+                                    <div class="sub-title">Member Type</div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Member Name</div>
+                                    <div class="sub-title">Member Type</div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Member Name</div>
+                                    <div class="sub-title">Member Type</div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Member Name</div>
+                                    <div class="sub-title">Member Type</div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image">
+                                    <img src="img/demo-icon.webp" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">Member Name</div>
+                                    <div class="sub-title">Member Type</div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-title">
+            <div class="sub-title">MADE BY</div>
+            <div class="title">SUJAL PATEL</div>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</html>
