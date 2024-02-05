@@ -14,7 +14,6 @@ const tooltip_bg = '#F5F5DC';
 const tooltip_border = "#79155B";
 const tooltip_title = "#79155B";
 
-
 var menu_open = true;
 
 $(document).ready(function () {
