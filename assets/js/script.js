@@ -68,6 +68,38 @@ $(document).ready(function () {
         }
     });
 });
+
+
+// routes
+$('.dashboard').click(function () {
+location.href = '/';
+});
+$('.appointments').click(function () {
+location.href = '/appointments';
+});
+$('.cases').click(function () {
+location.href = '/cases';
+});
+$('.attorney').click(function () {
+location.href = '/attorney';
+});
+$('.features').click(function () {
+location.href = '/features';
+});
+$('.ftc').click(function () {
+location.href = '/ftc';
+});
+$('.aw').click(function () {
+location.href = '/aw';
+});
+$('.authentication').click(function () {
+location.href = '/authentication';
+});
+$('.miscellaneous').click(function () {
+location.href = '/miscellaneous';
+});
+
+
 new Chart(ctx1, {
     type: 'line',
     data: {
