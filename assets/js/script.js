@@ -69,6 +69,11 @@ $(document).ready(function () {
     });
 });
 
+$('.nev-option').click(function () {
+    $('.nev-option.selected').removeClass('selected'); 
+    $(this).addClass('selected');
+    localStorage.setItem('selectedOption', $(this).attr('data-option'));
+});
 
 // routes
 $('.dashboard').click(function () {
