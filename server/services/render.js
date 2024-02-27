@@ -1,7 +1,8 @@
 const axios = require('axios');
+const port = process.env.PORT;
 
 exports.homeRoutes = (req, res) => {
-    axios.get('http://localhost:2410/api/cases')
+    axios.get(`http://localhost:${port}/api/cases`)
         .then(function (response) {
             res.render('index', { cases: response.data });
         })
@@ -39,4 +40,18 @@ exports.miscellaneous = (req, res) => {
 }
 exports.admin = (req, res) => {
     res.render('admin');
+}
+
+exports.createcase = (req, res) => {
+    res.render('other/addcase');
+}
+
+exports.updatecase = (req, res) => {
+    axios.get(`http://localhost:${port}/api/cases`, { params: { id: req.query.id } })
+        .then(function (response) {
+            res.render('other/updatecase', { cases: response.data });
+        })
+        .catch(err => {
+            res.send(err);
+        })
 }

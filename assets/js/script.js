@@ -1,11 +1,3 @@
-const ctx1 = document.getElementById('myChart1');
-const ctx2 = document.getElementById('myChart2');
-const ctx3 = document.getElementById('myChart3');
-const ctx4 = document.getElementById('myChart4');
-const ctx5 = document.getElementById('myChart5');
-const ctx6 = document.getElementById('myChart6');
-const ctx7 = document.getElementById('myChart7');
-
 const color1 = '#1F1717';
 const color2 = '#CE5A67';
 const color3 = '#F4BF96';
@@ -69,41 +61,82 @@ $(document).ready(function () {
     });
 });
 
-$('.nev-option').click(function () {
-    $('.nev-option.selected').removeClass('selected'); 
-    $(this).addClass('selected');
-    localStorage.setItem('selectedOption', $(this).attr('data-option'));
+// Operation for edit case
+$('#updatecases').submit(function (event) {
+    event.preventDefault();
+    var data_array = $(this).serializeArray();
+    var data = {};
+    $.map(data_array, function (n, i) {
+        data[n['name']] = n['value'];
+    });
+    var request = {
+        "url": `http://localhost:2410/api/cases/${data.id}`,
+        "method": "PUT",
+        "data": data
+    }
+    $.ajax(request).done(function (response) {
+        alert('Data Saved Successfully');
+        return location.href = '/';
+    });
 });
+
+// Operation for delete case
+$('.delete-op').click(function () {
+    var id = $(this).attr('data-id');
+    var request = {
+        "url": `http://localhost:2410/api/cases/${id}`,
+        "method": "DELETE",
+    }
+    if (confirm('Do you want to delete this case?')) {
+        $.ajax(request).done(function (response) {
+            alert('Case deleted successfully');
+            return location.reload();
+        });
+    }
+});
+$('#addcases').submit(function (event) {
+    alert('Case Added Successfully');
+});
+
 
 // routes
 $('.dashboard').click(function () {
-location.href = '/';
+    location.href = '/';
 });
 $('.appointments').click(function () {
-location.href = '/appointments';
+    location.href = '/appointments';
 });
 $('.cases').click(function () {
-location.href = '/cases';
+    location.href = '/cases';
 });
 $('.attorney').click(function () {
-location.href = '/attorney';
+    location.href = '/attorney';
 });
 $('.features').click(function () {
-location.href = '/features';
+    location.href = '/features';
 });
 $('.ftc').click(function () {
-location.href = '/ftc';
+    location.href = '/ftc';
 });
 $('.aw').click(function () {
-location.href = '/aw';
+    location.href = '/aw';
 });
 $('.authentication').click(function () {
-location.href = '/authentication';
+    location.href = '/authentication';
 });
 $('.miscellaneous').click(function () {
-location.href = '/miscellaneous';
+    location.href = '/miscellaneous';
 });
 
+
+
+const ctx1 = document.getElementById('myChart1');
+const ctx2 = document.getElementById('myChart2');
+const ctx3 = document.getElementById('myChart3');
+const ctx4 = document.getElementById('myChart4');
+const ctx5 = document.getElementById('myChart5');
+const ctx6 = document.getElementById('myChart6');
+const ctx7 = document.getElementById('myChart7');
 
 new Chart(ctx1, {
     type: 'line',

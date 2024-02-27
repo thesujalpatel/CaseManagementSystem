@@ -36,7 +36,7 @@ exports.findcase = (req, res) => {
                 }
             })
             .catch(err => {
-                res.status(500).send({ message: "Error retrieving case with id " + id })
+                res.status(500).send({ message: err.message || "Error retrieving case with id " + id })
             })
     } else {
         caseDB.find()
@@ -47,4 +47,41 @@ exports.findcase = (req, res) => {
                 res.status(500).send({ message: err.message || "Error occurred while retrieving case information" })
             })
     }
+}
+exports.updatecase = (req, res) => {
+    if (!req.body) {
+        return res
+            .status(400)
+            .send({ message: "Data to update can not be empty" })
+    }
+    const id = req.params.id;
+    caseDB.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Cannot update case with ${id}. Maybe case not found!` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message || "Error updating case information" })
+        })
+}
+exports.deletecase = (req, res) => {
+    const id = req.params.id;
+    caseDB.findByIdAndDelete(id)
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Cannot delete with id ${id}. Maybe id is wrong` })
+            } else {
+                res.send({
+                    message: "Case was deleted successfully!"
+                })
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Could not delete case with id=" + id
+            });
+        });
 }
