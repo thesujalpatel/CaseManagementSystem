@@ -43,15 +43,28 @@ exports.admin = (req, res) => {
 }
 
 exports.createcase = (req, res) => {
-    res.render('other/addcase');
-}
-
-exports.updatecase = (req, res) => {
-    axios.get(`http://localhost:${port}/api/cases`, { params: { id: req.query.id } })
+    axios.get(`http://localhost:${port}/api/users`)
         .then(function (response) {
-            res.render('other/updatecase', { cases: response.data });
+            res.render('createcase', { users: response.data });
         })
         .catch(err => {
             res.send(err);
         })
+}
+
+exports.updatecase = (req, res) => {
+
+    axios.all([
+        axios.get(`http://localhost:${port}/api/cases`, { params: { id: req.query.id } }),
+        axios.get(`http://localhost:${port}/api/users`)
+    ])
+        .then(axios.spread((casesResponse, userResponse) => {
+            res.render('updatecase', { cases: casesResponse.data, users: userResponse.data });
+        }))
+        .catch(err => {
+            res.send(err);
+        });
+}
+exports.sign = (req, res) => {
+    res.render('sign');
 }

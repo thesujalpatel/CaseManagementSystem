@@ -1,3 +1,4 @@
+var userDB = require('../model/userdb');
 var caseDB = require('../model/casedb');
 
 exports.createcase = (req, res) => {
@@ -5,24 +6,29 @@ exports.createcase = (req, res) => {
         res.status(400).send("Content can not be empty!");
         return;
     }
-    const caseinfo = new caseDB({
-        name: req.body.name,
-        email: req.body.email,
-        attorney: req.body.attorney,
-        type: req.body.type,
-        status: req.body.status
-    })
-    caseinfo
-        .save(caseinfo)
-        .then(data => {
-            // res.send(data);
-            res.redirect('/admin');
+    var emailFinder = userDB.findOne({ name: req.body.name });
+    emailFinder.then(emailValue => {
+        const caseinfo = new caseDB({
+            name: req.body.name,
+            email: emailValue.email,
+            attorney: req.body.attorney,
+            type: req.body.type,
+            status: "On going",
+            createDate: Date.now(),
+            updateDate: null
         })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating a create operation"
+        caseinfo
+            .save(caseinfo)
+            .then(data => {
+                // res.send(data);
+                res.redirect('/admin');
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating a create operation"
+                });
             });
-        });
+    })
 }
 exports.findcase = (req, res) => {
     if (req.query.id) {
@@ -55,17 +61,26 @@ exports.updatecase = (req, res) => {
             .send({ message: "Data to update can not be empty" })
     }
     const id = req.params.id;
-    caseDB.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-        .then(data => {
-            if (!data) {
-                res.status(404).send({ message: `Cannot update case with ${id}. Maybe case not found!` })
-            } else {
-                res.send(data)
-            }
-        })
-        .catch(err => {
-            res.status(500).send({ message: err.message || "Error updating case information" })
-        })
+    var emailFinder = userDB.findOne({ name: req.body.name });
+    emailFinder.then(emailValue => {
+        const updateData = {
+            ...req.body,
+            updateDate: Date(Date.now()),
+            email: emailValue.email
+        };
+        caseDB.findByIdAndUpdate(id, updateData, { useFindAndModify: false })
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: `Cannot update case with ${id}. Maybe case not found!` })
+                } else {
+                    res.send(data)
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error updating case information" })
+            })
+    });
+
 }
 exports.deletecase = (req, res) => {
     const id = req.params.id;

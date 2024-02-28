@@ -2,7 +2,9 @@ const express = require('express');
 const route = express.Router();
 
 const services = require('../services/render');
-const controller = require('../controller/controller');
+
+const caseController = require('../controller/case');
+const userController = require('../controller/user');
 
 route.get('/', services.homeRoutes);
 route.get('/appointments', services.appointments);
@@ -14,15 +16,20 @@ route.get('/aw', services.aw);
 route.get('/authentication', services.authentication);
 route.get('/miscellaneous', services.miscellaneous);
 
+route.get('/sign', services.sign);
+
 route.get('/admin', services.admin);
 route.get('/admin/createcase', services.createcase);
 route.get('/admin/updatecase', services.updatecase);
 
 
 // API
-route.post('/api/cases', controller.createcase);
-route.get('/api/cases', controller.findcase);
-route.put('/api/cases/:id', controller.updatecase);
-route.delete('/api/cases/:id', controller.deletecase);
+route.post('/api/cases', caseController.createcase);
+route.get('/api/cases', caseController.findcase);
+route.put('/api/cases/:id', caseController.updatecase);
+route.delete('/api/cases/:id', caseController.deletecase);
+
+route.post('/api/users', userController.createuser);
+route.get('/api/users', userController.finduser);
 
 module.exports = route;

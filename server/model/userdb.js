@@ -9,17 +9,17 @@ var schema = new mongooes.Schema({
         type: String,
         required: true
     },
-    attorney: {
+    password: {
         type: String,
         required: true
     },
-    type: {
+    role: {
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        required: true
+    phone: {
+        type: Array,
+        required: true,
     },
     createDate: {
         type: Date,
@@ -30,5 +30,5 @@ var schema = new mongooes.Schema({
         required: false
     },
 });
-const caseDB = mongooes.model('casedb', schema);
-module.exports = caseDB;
+const userDB = mongooes.model('userdb', schema);
+module.exports = userDB;

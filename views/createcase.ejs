@@ -1,0 +1,24 @@
+<%- include('include/header') %>
+
+    <form action="/api/cases" method="post" name="addcases" id="addcases">
+        <select name="name">
+            <option selected disabled hidden>Select client</option>
+            <% users.forEach((users)=> { %>
+                <option value="<%= users.name %>">
+                    <%= users.name %>
+                </option>
+                <% }) %>
+        </select>
+        <select name="attorney">
+            <option selected disabled hidden>Select attorney</option>
+            <% users.forEach((users)=> { %>
+                <option value="<%= users.name %>">
+                    <%= users.name %>
+                </option>
+                <% }) %>
+        </select>
+        <input type="text" name="type" placeholder="Case type" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <%- include('include/footer') %>

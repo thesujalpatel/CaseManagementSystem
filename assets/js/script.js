@@ -6,7 +6,6 @@ const tooltip_bg = '#F5F5DC';
 const tooltip_border = "#79155B";
 const tooltip_title = "#79155B";
 
-var menu_open = true;
 
 $(document).ready(function () {
     window.onscroll = function () { scrollFunction() };
@@ -15,7 +14,7 @@ $(document).ready(function () {
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             if (!isButtonVisible) {
-                $('.scroll-top-icon').animate({ opacity: 1 }, 500);
+                $('.scroll-top-icon').animate({ opacity: 0.7 }, 500);
                 isButtonVisible = true;
             }
         } else {
@@ -29,6 +28,7 @@ $(document).ready(function () {
     $('.scroll-top-icon').click(function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+    var menu_open = true;
     var nevListItems = $('.nev');
     var menubtn = $('.nev-btn');
     menubtn.click(function () {
@@ -99,8 +99,28 @@ $('#addcases').submit(function (event) {
 });
 
 
+var url = window.location.href;
+const selected_array = {
+    '/': ['.dashboard', "Dashboard"],
+    '/appointments': ['.appointments', "Appointments"],
+    '/cases': ['.cases', "Cases"],
+    '/attorney': ['.attorney', "Attorney"],
+    '/features': ['.features', "Features"],
+    '/ftc': ['.ftc', "Forms, Tables & Charts"],
+    '/aw': ['.aw', "Application & Widgets"],
+    '/authentication': ['.authentication', "Authentication"],
+    '/miscellaneous': ['.miscellaneous', "Miscellaneous"],
+};
+for (var key in selected_array) {
+    if (url.endsWith(key)) {
+        $(selected_array[key][0]).addClass('selected');
+        $("title").text("Case Management System - ", selected_array[key][1]);
+        $(".page-title").text(selected_array[key][1]);
+    }
+}
+
 // routes
-$('.dashboard').click(function () {
+$('.dashboard').click(function (event) {
     location.href = '/';
 });
 $('.appointments').click(function () {

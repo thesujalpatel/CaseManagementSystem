@@ -1,0 +1,18 @@
+<%- include('include/header') %>
+
+    <form action="/api/users" method="post" name="registration" id="registration">
+        <input type="text" name="name" id="name" placeholder="Name" required>
+        <input type="text" name="email" id="email" placeholder="Email" required>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="number" name="phone1" id="phone" placeholder="Phone" required>
+        <input type="number" name="phone2" id="phone" placeholder="Phone">
+        <select name="role">
+            <option selected disabled hidden>Select role</option>
+            <option value="lawyer">Lawyer</option>
+            <option value="judge">Judge</option>
+            <option value="user">User</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+    <%- include('include/footer') %>

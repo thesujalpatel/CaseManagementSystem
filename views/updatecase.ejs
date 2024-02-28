@@ -1,0 +1,29 @@
+<%- include('include/header') %>
+
+    <form action="" name="updatecases" id="updatecases">
+        <input type="hidden" value="<%= cases._id %>" name="id" placeholder="Client name" required>
+        <select name="name">
+            <% users.forEach((users)=> { %>
+                <option value="<%= users.name %>" <%=users.name===cases.name ? 'selected' : '' %>>
+                    <%= users.name %>
+                </option>
+                <% }) %>
+        </select>
+        <select name="attorney">
+            <% users.forEach((users)=> { %>
+                <option value="<%= users.name %>" <%=users.name===cases.attorney ? 'selected' : '' %>>
+                    <%= users.name %>
+                </option>
+                <% }) %>
+        </select>
+        <input type="text" value="<%= cases.type %>" name="type" placeholder="Case type" required>
+        <select name="status">
+            <option value="win" <%=cases.status==="win" ? 'selected' : '' %>>Win</option>
+            <option value="lost" <%=cases.status==="lost" ? 'selected' : '' %>>Lost</option>
+            <option value="declined" <%=cases.status==="declined" ? 'selected' : '' %>>Declined</option>
+            <option value="ongoing" <%=cases.status==="ongoing" ? 'selected' : '' %>>On going</option>
+        </select>
+        <input type="submit" value="Update">
+    </form>
+
+    <%- include('include/footer') %>
