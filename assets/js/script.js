@@ -6,7 +6,7 @@ const tooltip_bg = '#F5F5DC';
 const tooltip_border = "#79155B";
 const tooltip_title = "#79155B";
 
-
+var menu_open = true;
 $(document).ready(function () {
     window.onscroll = function () { scrollFunction() };
     var isButtonVisible = false;
@@ -14,7 +14,7 @@ $(document).ready(function () {
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             if (!isButtonVisible) {
-                $('.scroll-top-icon').animate({ opacity: 0.7 }, 500);
+                $('.scroll-top-icon').animate({ opacity: 1 }, 500);
                 isButtonVisible = true;
             }
         } else {
@@ -28,13 +28,12 @@ $(document).ready(function () {
     $('.scroll-top-icon').click(function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    var menu_open = true;
-    var nevListItems = $('.nev');
+    var nevListItems = $('.nev, .nev-section');
     var menubtn = $('.nev-btn');
     menubtn.click(function () {
         if (menu_open) {
-            $('.page-name').fadeTo(200, 0).hide(200);
-            $('.nev-sec').fadeTo(500, 0).hide(500);
+            $('.page-name').fadeTo(190, 0).hide(190);
+            $('.nev-sec').fadeTo(350, 0).hide(390);
             $('.div').fadeTo(500, 0).hide(500);
             $('.option-title').fadeTo(400, 0).hide();
             nevListItems.animate({ 'width': '40px' }, 500);
@@ -43,20 +42,29 @@ $(document).ready(function () {
             menu_open = false;
 
             setTimeout(function () {
-                $('.logo-img').css('width', '25px').css('height', '25px');
+                $('.logo-img').css({
+                    'width': '25px',
+                    'height': '25px'
+                });
             }, 500);
 
         } else {
             $('.spacial').show(500).fadeTo(500, 1)
-            $('.page-name').show(150).fadeTo(500, 1);
             $('.option-title').show(500).fadeTo(500, 1);
             $('.div').show(500).fadeTo(500, 1);
             $('.nev-sec').show(500).fadeTo(500, 1);
-            $('.logo-img').animate({ 'width': '50px', 'height': '50px' }, 500);
+            $('.logo-img').animate({
+                'width': '50px',
+                'height': '50px'
+            }, 500);
             $('.nev-btn').addClass('selected');
-
             nevListItems.animate({ 'width': '250px' }, 500);
             menu_open = true;
+
+            setTimeout(function () {
+                $('.page-name').show(250);
+                $('.page-name').fadeTo(500, 1);
+            }, 500);
         }
     });
 });
@@ -114,7 +122,7 @@ const selected_array = {
 for (var key in selected_array) {
     if (url.endsWith(key)) {
         $(selected_array[key][0]).addClass('selected');
-        $("title").text("Case Management System - ", selected_array[key][1]);
+        $("title").text(selected_array[key][1]);
         $(".page-title").text(selected_array[key][1]);
     }
 }
@@ -201,7 +209,7 @@ new Chart(ctx1, {
             borderColor: color1,
             backgroundColor: color1,
         }, {
-            label: 'SATTLED',
+            label: 'SETTLED',
             data: [{
                 x: 10,
                 y: 10

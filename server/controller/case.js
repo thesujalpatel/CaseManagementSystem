@@ -14,6 +14,7 @@ exports.createcase = (req, res) => {
             attorney: req.body.attorney,
             type: req.body.type,
             status: "On going",
+            hearing: "No",
             createDate: Date.now(),
             updateDate: null
         })

@@ -21,6 +21,10 @@ var schema = new mongooes.Schema({
         type: String,
         required: true
     },
+    hearing: {
+        type: String,
+        required: true
+    },
     createDate: {
         type: Date,
         required: true

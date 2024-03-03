@@ -1,8 +1,8 @@
 const axios = require('axios');
-const port = process.env.PORT;
+const config = require('../../config.json');
 
 exports.homeRoutes = (req, res) => {
-    axios.get(`http://localhost:${port}/api/cases`)
+    axios.get(`http://localhost:${config.port}/api/cases`)
         .then(function (response) {
             res.render('index', { cases: response.data });
         })
@@ -43,7 +43,7 @@ exports.admin = (req, res) => {
 }
 
 exports.createcase = (req, res) => {
-    axios.get(`http://localhost:${port}/api/users`)
+    axios.get(`http://localhost:${config.port}/api/users`)
         .then(function (response) {
             res.render('createcase', { users: response.data });
         })
@@ -55,8 +55,8 @@ exports.createcase = (req, res) => {
 exports.updatecase = (req, res) => {
 
     axios.all([
-        axios.get(`http://localhost:${port}/api/cases`, { params: { id: req.query.id } }),
-        axios.get(`http://localhost:${port}/api/users`)
+        axios.get(`http://localhost:${config.port}/api/cases`, { params: { id: req.query.id } }),
+        axios.get(`http://localhost:${config.port}/api/users`)
     ])
         .then(axios.spread((casesResponse, userResponse) => {
             res.render('updatecase', { cases: casesResponse.data, users: userResponse.data });

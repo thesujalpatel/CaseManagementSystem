@@ -17,10 +17,12 @@
                 <% }) %>
         </select>
         <input type="text" value="<%= cases.type %>" name="type" placeholder="Case type" required>
+        <input type="number" value="<%= cases.hearing %>" name="hearing" placeholder="Hearing" required>
         <select name="status">
             <option value="win" <%=cases.status==="win" ? 'selected' : '' %>>Win</option>
             <option value="lost" <%=cases.status==="lost" ? 'selected' : '' %>>Lost</option>
             <option value="declined" <%=cases.status==="declined" ? 'selected' : '' %>>Declined</option>
+            <option value="declined" <%=cases.status==="settled" ? 'selected' : '' %>>Settled</option>
             <option value="ongoing" <%=cases.status==="ongoing" ? 'selected' : '' %>>On going</option>
         </select>
         <input type="submit" value="Update">
