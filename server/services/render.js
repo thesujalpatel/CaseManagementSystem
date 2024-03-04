@@ -1,70 +1,79 @@
-const axios = require('axios');
-const config = require('../../config.json');
+const axios = require("axios");
+const config = require("../../config.json");
 
 exports.homeRoutes = (req, res) => {
-    axios.get(`http://localhost:${config.port}/api/cases`)
-        .then(function (response) {
-            res.render('index', { cases: response.data });
-        })
-}
+  axios
+    .get(`http://localhost:${config.port}/api/cases`)
+    .then(function (response) {
+      res.render("index", { cases: response.data });
+    });
+};
 exports.appointments = (req, res) => {
-    res.render('appointments');
-}
+  res.render("appointments");
+};
 
 exports.cases = (req, res) => {
-    res.render('cases');
-}
+  res.render("cases");
+};
 
 exports.attorney = (req, res) => {
-    res.render('attorney');
-}
+  res.render("attorney");
+};
 
 exports.features = (req, res) => {
-    res.render('features');
-}
+  res.render("features");
+};
 
 exports.ftc = (req, res) => {
-    res.render('ftc');
-}
+  res.render("ftc");
+};
 
 exports.aw = (req, res) => {
-    res.render('aw');
-}
+  res.render("aw");
+};
 
 exports.authentication = (req, res) => {
-    res.render('authentication');
-}
+  res.render("authentication");
+};
 
 exports.miscellaneous = (req, res) => {
-    res.render('miscellaneous');
-}
+  res.render("miscellaneous");
+};
 exports.admin = (req, res) => {
-    res.render('admin');
-}
+  res.render("admin");
+};
 
 exports.createcase = (req, res) => {
-    axios.get(`http://localhost:${config.port}/api/users`)
-        .then(function (response) {
-            res.render('createcase', { users: response.data });
-        })
-        .catch(err => {
-            res.send(err);
-        })
-}
+  axios
+    .get(`http://localhost:${config.port}/api/users`)
+    .then(function (response) {
+      res.render("createcase", { users: response.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
 exports.updatecase = (req, res) => {
-
-    axios.all([
-        axios.get(`http://localhost:${config.port}/api/cases`, { params: { id: req.query.id } }),
-        axios.get(`http://localhost:${config.port}/api/users`)
+  axios
+    .all([
+      axios.get(`http://localhost:${config.port}/api/cases`, {
+        params: { id: req.query.id },
+      }),
+      axios.get(`http://localhost:${config.port}/api/users`),
     ])
-        .then(axios.spread((casesResponse, userResponse) => {
-            res.render('updatecase', { cases: casesResponse.data, users: userResponse.data });
-        }))
-        .catch(err => {
-            res.send(err);
+    .then(
+      axios.spread((casesResponse, userResponse) => {
+        res.render("updatecase", {
+          cases: casesResponse.data,
+          users: userResponse.data,
         });
-}
+      })
+    )
+    .catch((err) => {
+      res.send(err);
+    });
+};
 exports.sign = (req, res) => {
-    res.render('sign');
-}
+  res.render("sign");
+};

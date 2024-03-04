@@ -17,7 +17,8 @@
                 <% }) %>
         </select>
         <input type="text" value="<%= cases.type %>" name="type" placeholder="Case type" required>
-        <input type="number" value="<%= cases.hearing %>" name="hearing" placeholder="Hearing" required>
+        <input type="number" value="<%= cases.hearing %>" name="hearing" placeholder="Hearing">
+        <input type="number" value="<%= cases.revenue %>" name="revenue" placeholder="Revenue">
         <select name="status">
             <option value="win" <%=cases.status==="win" ? 'selected' : '' %>>Win</option>
             <option value="lost" <%=cases.status==="lost" ? 'selected' : '' %>>Lost</option>

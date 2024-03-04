@@ -5,6 +5,7 @@ const services = require('../services/render');
 
 const caseController = require('../controller/case');
 const userController = require('../controller/user');
+const configController = require('../controller/config');
 
 route.get('/', services.homeRoutes);
 route.get('/appointments', services.appointments);
@@ -31,5 +32,7 @@ route.delete('/api/cases/:id', caseController.deletecase);
 
 route.post('/api/users', userController.createuser);
 route.get('/api/users', userController.finduser);
+
+route.get('/config', configController.config);
 
 module.exports = route;
