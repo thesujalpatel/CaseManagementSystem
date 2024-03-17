@@ -1,8 +1,6 @@
 fetch("/config")
   .then((response) => response.json())
   .then((config) => {
-    $(".web-name").text(config.website_name);
-    $(".dev-name").text(config.devloper_name);
     var port = config.port;
 
     const color1 = "#1F1717";
@@ -21,7 +19,7 @@ fetch("/config")
 
     // Menu botton animation
     var nevListItems = $(".nev, .nev-section");
-    var menubtn = $(".nev-btn");
+    var menubtn = $(".nev-btn, .logo-img");
     menubtn.click(function () {
       if (menu_open) {
         $(".web-name").fadeTo(190, 0).hide(190);
@@ -98,10 +96,19 @@ fetch("/config")
     $("#addcases").submit(function (event) {
       alert("Case Added Successfully");
     });
+    $(".signout").click(function () {
+      var request = {
+        url: `http://localhost:${port}/signout`,
+        method: "POST",
+      };
+      $.ajax(request).done(function (response) {
+        location.href = "/signin";
+      });
+    });
 
     var url = window.location.href;
     const selected_array = {
-      "/": [".dashboard", "Dashboard"],
+      "/dashboard": [".dashboard", "Dashboard"],
       "/appointments": [".appointments", "Appointments"],
       "/cases": [".cases", "Cases"],
       "/attorney": [".attorney", "Attorney"],
@@ -118,6 +125,55 @@ fetch("/config")
         $(".page-title").text(selected_array[key][1]);
       }
     }
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    var days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    setInterval(function () {
+      var current = new Date();
+
+      var year = current.getFullYear();
+      var month = current.getMonth();
+      var date =
+        current.getDate().toString().length == 1
+          ? "0" + current.getDate()
+          : current.getDate();
+      var hour =
+        current.getHours().toString().length == 1
+          ? "0" + current.getHours()
+          : current.getHours();
+      var minute =
+        current.getMinutes().toString().length == 1
+          ? "0" + current.getMinutes()
+          : current.getMinutes();
+      var second =
+        current.getSeconds().toString().length == 1
+          ? "0" + current.getSeconds()
+          : current.getSeconds();
+      $(".time").html(`${hour}:${minute}:${second}`);
+      $(".date").html(
+        `${date} ${months[month]} ${year} ${days[current.getDay()]}`
+      );
+    }, 1000);
 
     // routes
     $(".dashboard").click(function (event) {
@@ -158,9 +214,9 @@ fetch("/config")
 
     $(document).ready(function () {
       // Scroll to top button
-      window.onscroll = function () {
+      $(window).on("scroll", function () {
         scrollFunction();
-      };
+      });
       var isButtonVisible = false;
       $(".scroll-top-icon").css("opacity", 0);
       function scrollFunction() {
@@ -185,21 +241,7 @@ fetch("/config")
         method: "GET",
       };
       $.ajax(cases).done(function (response) {
-        var months = [
-            "JANUARY",
-            "FEBRUARY",
-            "MARCH",
-            "APRIL",
-            "MAY",
-            "JUNE",
-            "JULY",
-            "AUGUST",
-            "SEPTEMBER",
-            "OCTOBER",
-            "NOVEMBER",
-            "DECEMBER",
-          ],
-          date_current = Date.now(),
+        var date_current = Date.now(),
           month_current =
             new Date(date_current).getMonth("en-IN", {
               timeZone: config.timezone,
@@ -228,7 +270,6 @@ fetch("/config")
                 element.revenue == undefined || null
                   ? c4[i].y
                   : c4[i].y + element.revenue;
-              console.log(element.revenue);
             }
           }
         });

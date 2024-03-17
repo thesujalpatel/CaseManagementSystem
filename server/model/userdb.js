@@ -21,9 +21,10 @@ var schema = new mongooes.Schema({
     type: Array,
     required: true,
   },
-  image: {
+  pfp: {
     data: Buffer,
     contentType: String,
+    imageUrl: String,
   },
   createDate: {
     type: Date,

@@ -3,5 +3,5 @@
   "mongo_uri": "mongodb://127.0.0.1:27017/crypto",
   "devloper_name": "Sujal Patel",
   "website_name": "Crypto",
-  "timezone": "Asia/Kolkata"
+  "session_secret": "the_super_secret_key"
 }

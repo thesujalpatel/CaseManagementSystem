@@ -54,7 +54,7 @@
                     <% cases.forEach((caseItem)=> { %>
                         <tr>
                             <td class="image">
-                                <image src="img/images.png" alt="img" class="img"></image>
+                                <image src="<%= caseItem.pfp.imageUrl %>" alt="PFP" class="img"></image>
                             </td>
                             <td class="name">
                                 <div class="title">
@@ -355,4 +355,5 @@
                 </div>
             </div>
         </div>
+      
         <%- include('include/footer') %>

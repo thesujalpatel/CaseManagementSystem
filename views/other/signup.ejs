@@ -1,6 +1,6 @@
 <%- include('include/header') %>
 
-    <form action="/api/users" method="post" name="registration" id="registration">
+    <form action="/api/users" method="post" name="signup" id="signup" enctype="multipart/form-data">
         <input type="text" name="name" id="name" placeholder="Name" required>
         <input type="text" name="email" id="email" placeholder="Email" required>
         <input type="password" name="password" id="password" placeholder="Password" required>
@@ -12,7 +12,7 @@
             <option value="judge">Judge</option>
             <option value="user">User</option>
         </select>
-        <input type="file" name="image" id="image" required>
+        <input type="file" name="pfp" id="pfp">
         <input type="submit" value="Submit">
     </form>
 

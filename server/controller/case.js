@@ -6,16 +6,17 @@ exports.createcase = (req, res) => {
     res.status(400).send("Content can not be empty!");
     return;
   }
-  var emailFinder = userDB.findOne({ name: req.body.name });
-  emailFinder.then((emailValue) => {
+  var infoFinder = userDB.findOne({ name: req.body.name });
+  infoFinder.then((info) => {
     const caseinfo = new caseDB({
       name: req.body.name,
-      email: emailValue.email,
+      email: info.email,
       attorney: req.body.attorney,
       type: req.body.type,
       status: "ongoing",
       hearing: "no",
       revenue: null,
+      pfp: info.pfp,
       createDate: Date.now(),
       updateDate: null,
       isFinished: false,
@@ -71,12 +72,13 @@ exports.updatecase = (req, res) => {
     return res.status(400).send({ message: "Data to update can not be empty" });
   }
   const id = req.params.id;
-  var emailFinder = userDB.findOne({ name: req.body.name });
-  emailFinder.then((emailValue) => {
+  var infoFinder = userDB.findOne({ name: req.body.name });
+  infoFinder.then((info) => {
     const updateData = {
       ...req.body,
       updateDate: Date(Date.now()),
-      email: emailValue.email,
+      email: info.email,
+      pfp: info.pfp,
       isFinish: req.body.status == "ongoing" ? false : true,
       hearing:
         req.body.hearing == "0" || !req.body.hearing ? "no" : req.body.hearing,

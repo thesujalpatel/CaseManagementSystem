@@ -1,46 +1,49 @@
 const axios = require("axios");
 const config = require("../../config.json");
 
-exports.homeRoutes = (req, res) => {
+exports.landing = (req, res) => {
+  res.render("landing");
+};
+exports.dashboard = (req, res) => {
   axios
     .get(`http://localhost:${config.port}/api/cases`)
     .then(function (response) {
-      res.render("index", { cases: response.data });
+      res.render("dashboard", { cases: response.data, config: config });
     });
 };
 exports.appointments = (req, res) => {
-  res.render("appointments");
+  res.render("appointments", { config: config });
 };
 
 exports.cases = (req, res) => {
-  res.render("cases");
+  res.render("cases", { config: config });
 };
 
 exports.attorney = (req, res) => {
-  res.render("attorney");
+  res.render("attorney", { config: config });
 };
 
 exports.features = (req, res) => {
-  res.render("features");
+  res.render("features", { config: config });
 };
 
 exports.ftc = (req, res) => {
-  res.render("ftc");
+  res.render("ftc", { config: config });
 };
 
 exports.aw = (req, res) => {
-  res.render("aw");
+  res.render("aw", { config: config });
 };
 
 exports.authentication = (req, res) => {
-  res.render("authentication");
+  res.render("authentication", { config: config });
 };
 
 exports.miscellaneous = (req, res) => {
-  res.render("miscellaneous");
+  res.render("miscellaneous", { config: config });
 };
 exports.admin = (req, res) => {
-  res.render("admin");
+  res.render("admin", { config: config });
 };
 
 exports.createcase = (req, res) => {
@@ -74,6 +77,11 @@ exports.updatecase = (req, res) => {
       res.send(err);
     });
 };
-exports.sign = (req, res) => {
-  res.render("sign");
+
+exports.signup = (req, res) => {
+  res.render("signup");
+};
+
+exports.signin = (req, res) => {
+  res.render("signin");
 };

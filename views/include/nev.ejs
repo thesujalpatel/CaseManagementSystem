@@ -28,17 +28,21 @@
                 <div class="logo">
                     <img class="logo-img" src="img/demo-icon.webp">
                 </div>
-                <div class="web-name"></div>
+                <div class="web-name">
+                    <%= config.website_name %>
+                </div>
             </div>
             <div class="nev-sec exception">
                 <div class="dev">
                     <img class="dev-img" src="img/images.png" alt="Profile Image">
                 </div>
-                <div class="dev-name"> </div>
+                <div class="dev-name">
+                    <%= config.devloper_name %>
+                </div>
                 <div class="nev-icon">
                     <i class="i fa-solid fa-envelope"></i>
                     <i class="i fa-solid fa-comment"></i>
-                    <i class="i fa-solid fa-right-from-bracket"></i>
+                    <i class="i fa-solid fa-right-from-bracket signout"></i>
                 </div>
             </div>
             <div class="nev-secv">
@@ -85,10 +89,16 @@
             </div>
         </div>
     </div>
-    <div class="univerce">
+    <div class="universe">
         <div class="top-bar">
-            <div class="nev-btn selected">
-                <i class="fa-solid fa-bars-staggered"></i>
+            <div class="top-left">
+                <div class="nev-btn selected">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </div>
+                <div class="page-title"></div>
             </div>
-            <div class="page-title"></div>
+            <div class="top right">
+                <div class="time"></div>
+                <div class="date"></div>
+            </div>
         </div>
