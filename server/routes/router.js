@@ -49,8 +49,10 @@ route.get("/authentication", isAuth, services.authentication);
 route.get("/miscellaneous", isAuth, services.miscellaneous);
 
 route.get("/admin", isAuth, isAdmin, services.admin);
-route.get("/admin/createcase", isAuth, isAdmin, services.createcase);
-route.get("/admin/updatecase", isAuth, isAdmin, services.updatecase);
+
+route.get("/createcase", isAuth, services.createcase);
+route.get("/updatecase", isAuth, services.updatecase);
+route.get("/casedetail", isAuth, services.casedetail);
 
 route.get("/signup", services.signup);
 route.get("/signin", services.signin);

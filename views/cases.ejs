@@ -1,4 +1,58 @@
 <%- include('include/header') %>
     <%- include('include/nev') %>
-    
-    <%- include('include/footer') %>
+        <div class="cases-space">
+            <div class="card">
+                <div class="card-title">Cases</div>
+                <div class="card-backdrop">
+                    <table class="ongoing">
+                        <% cases.forEach((caseItem)=> { %>
+                            <tr>
+                                <td class="image">
+                                    <image src="<%= caseItem.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                </td>
+                                <td class="name">
+                                    <div class="title">
+                                        <%= caseItem.name %>
+                                    </div>
+                                    <div class="sub-title">
+                                        <%= caseItem.email %>
+                                    </div>
+                                </td>
+                                <td class="type">
+                                    <div class="sub-title">Case Type</div>
+                                    <div class="title">
+                                        <%= caseItem.type %>
+                                    </div>
+                                </td>
+                                <td class="att">
+                                    <div class="sub-title">Attorney</div>
+                                    <div class="title">
+                                        <%= caseItem.attorney %>
+                                    </div>
+                                </td>
+                                <td class="hear">
+                                    <div class="backfill">
+                                        <%= caseItem.hearing %> Hearing
+                                    </div>
+                                </td>
+                                <td class="operation1">
+                                    <a href="/updatecase?id=<%= caseItem._id %>">
+                                        <div class="op">
+                                            <i class="fa-solid fa-file-pen"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="operation2">
+                                    <a href="/casedetail?id=<%= caseItem._id %>">
+                                        <div class="op">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <%- include('include/footer') %>

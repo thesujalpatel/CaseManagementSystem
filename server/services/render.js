@@ -6,17 +6,41 @@ exports.landing = (req, res) => {
 };
 exports.dashboard = (req, res) => {
   axios
-    .get(`http://localhost:${config.port}/api/cases`)
-    .then(function (response) {
-      res.render("dashboard", { cases: response.data, config: config });
-    });
+    .all([
+      axios.get(`http://localhost:${config.port}/api/cases`, {
+        params: { id: req.query.id },
+      }),
+      axios.get(`http://localhost:${config.port}/api/users`),
+    ])
+    .then(
+      axios.spread((casesResponse, userResponse) => {
+        res.render("dashboard", {
+          cases: casesResponse.data,
+          users: userResponse.data,
+          config: config,
+        });
+      })
+    );
 };
 exports.appointments = (req, res) => {
   res.render("appointments", { config: config });
 };
 
 exports.cases = (req, res) => {
-  res.render("cases", { config: config });
+  axios
+    .all([
+      axios.get(`http://localhost:${config.port}/api/cases`),
+      axios.get(`http://localhost:${config.port}/api/users`),
+    ])
+    .then(
+      axios.spread((casesResponse, userResponse) => {
+        res.render("cases", {
+          cases: casesResponse.data,
+          users: userResponse.data,
+          config: config,
+        });
+      })
+    );
 };
 
 exports.attorney = (req, res) => {
@@ -73,6 +97,19 @@ exports.updatecase = (req, res) => {
         });
       })
     )
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+exports.casedetail = (req, res) => {
+  axios
+    .get(`http://localhost:${config.port}/api/cases`, {
+      params: { id: req.query.id },
+    })
+    .then(function (casedata) {
+      res.render("casedetail", { data: casedata.data });
+    })
     .catch((err) => {
       res.send(err);
     });

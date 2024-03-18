@@ -17,6 +17,7 @@
                 <% }) %>
         </select>
         <input type="text" value="<%= cases.type %>" name="type" placeholder="Case type" required>
+        <textarea name="description" id="description" placeholder="Description"><%= cases.description %></textarea>
         <input type="number" value="<%= cases.hearing %>" name="hearing" placeholder="Hearing">
         <input type="number" value="<%= cases.revenue %>" name="revenue" placeholder="Revenue">
         <select name="status">

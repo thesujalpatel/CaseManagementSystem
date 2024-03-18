@@ -75,7 +75,7 @@ fetch("/config")
       };
       $.ajax(request).done(function (response) {
         alert("Data Saved Successfully");
-        return (location.href = "/");
+        return (location.href = "/dashboard");
       });
     });
 
@@ -108,6 +108,9 @@ fetch("/config")
 
     var url = window.location.href;
     const selected_array = {
+      "/": ["", "Case Management System"],
+      "/signup": ["", "Sign Up"],
+      "/signin": ["", "Sign In"],
       "/dashboard": [".dashboard", "Dashboard"],
       "/appointments": [".appointments", "Appointments"],
       "/cases": [".cases", "Cases"],
@@ -121,7 +124,9 @@ fetch("/config")
     for (var key in selected_array) {
       if (url.endsWith(key)) {
         $(selected_array[key][0]).addClass("selected");
-        $("title").text(selected_array[key][1]);
+        try {
+          $("title").text(selected_array[key][1]);
+        } catch (e) {}
         $(".page-title").text(selected_array[key][1]);
       }
     }
@@ -177,7 +182,7 @@ fetch("/config")
 
     // routes
     $(".dashboard").click(function (event) {
-      location.href = "/";
+      location.href = "/dashboard";
     });
     $(".appointments").click(function () {
       location.href = "/appointments";

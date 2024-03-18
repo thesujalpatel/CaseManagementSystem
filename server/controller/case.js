@@ -13,6 +13,7 @@ exports.createcase = (req, res) => {
       email: info.email,
       attorney: req.body.attorney,
       type: req.body.type,
+      description: req.body.description,
       status: "ongoing",
       hearing: "no",
       revenue: null,

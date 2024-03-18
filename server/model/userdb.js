@@ -17,6 +17,10 @@ var schema = new mongooes.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   phone: {
     type: Array,
     required: true,

@@ -17,6 +17,8 @@ connectionDB();
 app.set("views", [
   path.resolve(__dirname, "views"),
   path.resolve(__dirname, "views/other"),
+  path.resolve(__dirname, "views/admin"),
+  path.resolve(__dirname, "views/perms"),
 ]);
 app.set("view engine", "ejs");
 

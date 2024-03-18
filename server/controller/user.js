@@ -36,6 +36,7 @@ exports.createuser = (req, res) => {
             email: req.body.email,
             password: hashedPassword,
             role: req.body.role,
+            description: req.body.description,
             phone: [
               req.body.phone1,
               req.body.phone2 == "" ? null : req.body.phone2,

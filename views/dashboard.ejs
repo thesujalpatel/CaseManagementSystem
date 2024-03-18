@@ -52,49 +52,55 @@
             <div class="card-backdrop">
                 <table class="ongoing">
                     <% cases.forEach((caseItem)=> { %>
-                        <tr>
-                            <td class="image">
-                                <image src="<%= caseItem.pfp.imageUrl %>" alt="PFP" class="img"></image>
-                            </td>
-                            <td class="name">
-                                <div class="title">
-                                    <%= caseItem.name %>
-                                </div>
-                                <div class="sub-title">
-                                    <%= caseItem.email %>
-                                </div>
-                            </td>
-                            <td class="type">
-                                <div class="sub-title">Case Type</div>
-                                <div class="title">
-                                    <%= caseItem.type %>
-                                </div>
-                            </td>
-                            <td class="att">
-                                <div class="sub-title">Attorney</div>
-                                <div class="title">
-                                    <%= caseItem.attorney %>
-                                </div>
-                            </td>
-                            <td class="hear">
-                                <div class="backfill"><%= caseItem.hearing %> Hearing</div>
-                            </td>
-                            <td class="operation1">
-                                <div class="op">
-                                    <a href="/admin/updatecase?id=<%= caseItem._id %>">
-                                        <i class="fa-solid fa-file-pen"></i>
+                        <% if (caseItem.status=="ongoing" ) { %>
+
+
+                            <tr>
+                                <td class="image">
+                                    <image src="<%= caseItem.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                </td>
+                                <td class="name">
+                                    <div class="title">
+                                        <%= caseItem.name %>
+                                    </div>
+                                    <div class="sub-title">
+                                        <%= caseItem.email %>
+                                    </div>
+                                </td>
+                                <td class="type">
+                                    <div class="sub-title">Case Type</div>
+                                    <div class="title">
+                                        <%= caseItem.type %>
+                                    </div>
+                                </td>
+                                <td class="att">
+                                    <div class="sub-title">Attorney</div>
+                                    <div class="title">
+                                        <%= caseItem.attorney %>
+                                    </div>
+                                </td>
+                                <td class="hear">
+                                    <div class="backfill">
+                                        <%= caseItem.hearing %> Hearing
+                                    </div>
+                                </td>
+                                <td class="operation1">
+                                    <a href="/updatecase?id=<%= caseItem._id %>">
+                                        <div class="op">
+                                            <i class="fa-solid fa-file-pen"></i>
+                                        </div>
                                     </a>
-                                </div>
-                            </td>
-                            <td class="operation2">
-                                <div class="op" data-id="<%= caseItem._id %>">
+                                </td>
+                                <td class="operation2">
                                     <a class="delete-op" data-id="<%= caseItem._id %>">
-                                        <i class="fa-solid fa-eye"></i>
+                                        <div class="op">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </div>
                                     </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <% }) %>
+                                </td>
+                            </tr>
+                            <% } %>
+                                <% }) %>
                 </table>
             </div>
         </div>
@@ -103,60 +109,21 @@
                 <div class="card-title">Latest Matters</div>
                 <div class="card-backdrop">
                     <table class="sub-table">
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Matter Name</div>
-                                <div class="sub-title">Matter Type</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Matter Name</div>
-                                <div class="sub-title">Matter Type</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Matter Name</div>
-                                <div class="sub-title">Matter Type</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Matter Name</div>
-                                <div class="sub-title">Matter Type</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Matter Name</div>
-                                <div class="sub-title">Matter Type</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Matter Name</div>
-                                <div class="sub-title">Matter Type</div>
-                            </td>
-                        </tr>
+                        <% for( let index=cases.length-1; index>= 0 ; index-- ) { %>
+                            <tr>
+                                <td class="image">
+                                    <img src="<%= cases[index].pfp.imageUrl %>" alt="img" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">
+                                        <%= cases[index].type %>
+                                    </div>
+                                    <div class="sub-title">
+                                        <%= cases[index].name %>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
                     </table>
                 </div>
             </div>
@@ -243,117 +210,33 @@
                 <div class="card-title">New Members</div>
                 <div class="card-backdrop">
                     <table class="sub-table">
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Member Name</div>
-                                <div class="sub-title">Member Type</div>
-                            <td class="sub-operation1">
-                                <div class="sop">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                            </td>
-                            <td class="sub-operation2">
-                                <div class="sop">
-                                    <i class="fa-solid fa-message"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Member Name</div>
-                                <div class="sub-title">Member Type</div>
-                            <td class="sub-operation1">
-                                <div class="sop">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                            </td>
-                            <td class="sub-operation2">
-                                <div class="sop">
-                                    <i class="fa-solid fa-message"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Member Name</div>
-                                <div class="sub-title">Member Type</div>
-                            <td class="sub-operation1">
-                                <div class="sop">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                            </td>
-                            <td class="sub-operation2">
-                                <div class="sop">
-                                    <i class="fa-solid fa-message"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Member Name</div>
-                                <div class="sub-title">Member Type</div>
-                            <td class="sub-operation1">
-                                <div class="sop">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                            </td>
-                            <td class="sub-operation2">
-                                <div class="sop">
-                                    <i class="fa-solid fa-message"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Member Name</div>
-                                <div class="sub-title">Member Type</div>
-                            <td class="sub-operation1">
-                                <div class="sop">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                            </td>
-                            <td class="sub-operation2">
-                                <div class="sop">
-                                    <i class="fa-solid fa-message"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="image">
-                                <img src="img/demo-icon.webp" alt="img" class="img"></image>
-                            </td>
-                            <td class="matter-name">
-                                <div class="title">Member Name</div>
-                                <div class="sub-title">Member Type</div>
-                            <td class="sub-operation1">
-                                <div class="sop">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                            </td>
-                            <td class="sub-operation2">
-                                <div class="sop">
-                                    <i class="fa-solid fa-message"></i>
-                                </div>
-                            </td>
-                        </tr>
+                        <% for( let index=users.length-1; index>= 0; index-- ) { %>
+                            <tr>
+                                <td class="image">
+                                    <img src="<%= users[index].pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                </td>
+                                <td class="matter-name">
+                                    <div class="title">
+                                        <%= users[index].name %>
+                                    </div>
+                                    <div class="sub-title">
+                                        <%= users[index].role %>
+                                    </div>
+                                <td class="sub-operation1">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                </td>
+                                <td class="sub-operation2">
+                                    <div class="sop">
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
                     </table>
                 </div>
             </div>
         </div>
-      
+
         <%- include('include/footer') %>

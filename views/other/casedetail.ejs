@@ -1,0 +1,55 @@
+<%- include('include/header') %>
+<div class="cases-space">
+    <div class="card">
+        <div class="card-title">Case Details</div>
+        <div class="card-backdrop">
+            <table class="ongoing">
+                    <tr>
+                        <td class="image">
+                            <image src="<%= data.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                        </td>
+                        <td class="name">
+                            <div class="title">
+                                <%= data.name %>
+                            </div>
+                            <div class="sub-title">
+                                <%= data.email %>
+                            </div>
+                        </td>
+                        <td class="type">
+                            <div class="sub-title">Case Type</div>
+                            <div class="title">
+                                <%= data.type %>
+                            </div>
+                        </td>
+                        <td class="att">
+                            <div class="sub-title">Attorney</div>
+                            <div class="title">
+                                <%= data.attorney %>
+                            </div>
+                        </td>
+                        <td class="hear">
+                            <div class="backfill">
+                                <%= data.hearing %> Hearing
+                            </div>
+                        </td>
+                        <td class="operation1">
+                            <div class="op">
+                                <a href="/updatecase?id=<%= data._id %>">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="operation2">
+                            <div class="op" data-id="<%= data._id %>">
+                                <a class="delete-op" data-id="<%= data._id %>">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>
+    <%- include('include/footer') %>

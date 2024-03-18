@@ -4,7 +4,7 @@
   --graph_bg: #f5f5dc;
   --text: #fcf5ed;
   --border: rgb(0, 0, 0);
-  --shadow: rgb(0, 0, 0);
+  --shadow: #79155b;
   --title_bottom: #dfd7bf;
   --color1: #1f1717;
   --color2: #ce5a67;
@@ -39,7 +39,9 @@ body {
   font-family: Custome;
   src: url("font/museo700regular.ttf");
 }
-
+.universe {
+  min-height: 100vh;
+}
 .card-box,
 .card-box2 {
   display: grid;
@@ -98,15 +100,11 @@ body {
 @media screen and (max-width: 768px) {
   .card-box,
   .card-box2 {
-    display: block
+    display: block;
   }
   .card {
     height: 80vh;
     width: auto;
-  }   
-  .universe{
-    
-    overflow-y: hidden;
   }
 }
 .card-title {
@@ -118,6 +116,11 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: 900;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .ongoing {
@@ -144,7 +147,9 @@ body {
 }
 
 .operation1,
-.operation2 {
+.operation2,
+.sub-operation1,
+.sub-operation2 {
   width: 60px;
 }
 
@@ -176,17 +181,18 @@ body {
 
 .op {
   background-color: var(--color3);
-  text-align: center;
   height: 30px;
   width: 30px;
-  transform: translate(50%, 4%);
   border-radius: 5px;
   transition: 0.2s all linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 i {
   color: var(--color1);
-  transform: translate(2%, 50%);
 }
 
 .sub-table {
@@ -201,11 +207,14 @@ i {
 
 .sop {
   background-color: var(--color3);
-  text-align: center;
   height: 30px;
   width: 30px;
   border-radius: 5px;
   transition: 0.2s all linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 .sub-operation {
@@ -228,15 +237,10 @@ i {
   border: 6px solid var(--color1);
 }
 
-.card-title {
-  z-index: 1;
-  position: sticky;
-  top: 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
 
 .footer {
+  position: relative;
+  z-index: 3;
   margin-top: 12px;
   left: 0;
   bottom: 0;
@@ -247,8 +251,8 @@ i {
   padding-bottom: 10px;
   font-weight: 900;
   height: 100px;
+  border-top: 5px solid var(--card_title_bg);
 }
-
 .op:hover,
 .sop:hover {
   background-color: var(--color1);
@@ -329,7 +333,6 @@ i {
 }
 
 .nev-icon > .i {
-  transform: translate(0, 0);
   padding: 8px;
   margin: 9px;
   color: var(--color1);
@@ -349,10 +352,6 @@ i {
   width: 100%;
   display: flex;
   overflow: scroll;
-}
-
-.option-icon > .i {
-  transform: translate(0, 15%);
 }
 
 .nev-option > div {
@@ -433,7 +432,6 @@ i {
   align-items: center;
 }
 .nev-btn > i {
-  transform: translate(0, 0);
   color: var(--color1);
 }
 
@@ -493,15 +491,16 @@ i {
   height: 30px;
   width: 30px;
   margin: 5px;
-  padding: 5px;
   background-color: var(--color3);
   border-radius: 7px;
   transition: 0.2s all linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fixtoolbar > div:hover,
 .chat > div:hover {
-  transform: translate();
   background-color: var(--color2);
   cursor: pointer;
   transition: 0.2s all linear;
@@ -517,7 +516,6 @@ i {
 
 .fixtoolbar > div > i {
   color: var(--color1);
-  transform: translate(0, 15%);
 }
 
 .fixtoolbar:hover,
@@ -528,12 +526,11 @@ i {
 
 .chat > div > i {
   color: var(--color1);
-  transform: translate(2px, 15%);
 }
 
 .scroll-top {
   text-align: center;
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   top: 100%;
   left: 0;
@@ -547,6 +544,9 @@ i {
   background-color: var(--color3);
   border-radius: 7px;
   transition: 0.2s all linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scroll-top > div:hover {
@@ -558,4 +558,12 @@ i {
 .scroll-top > div:hover i {
   color: var(--text);
   transition: 0.2s all linear;
+}
+
+/* Case page */
+.cases-space .card{
+  height: 80vh;
+}
+.cases-space .card-title{
+  height: 12%;
 }
