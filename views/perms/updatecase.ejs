@@ -4,15 +4,15 @@
         <input type="hidden" value="<%= cases._id %>" name="id" placeholder="Client name" required>
         <select name="name">
             <% users.forEach((users)=> { %>
-                <option value="<%= users.name %>" <%=users.name===cases.name ? 'selected' : '' %>>
-                    <%= users.name %>
+                <option value="<%= users.username %>" <%=users.username===cases.name ? 'selected' : '' %>>
+                    <%= users.username %>
                 </option>
                 <% }) %>
         </select>
         <select name="attorney">
             <% users.forEach((users)=> { %>
-                <option value="<%= users.name %>" <%=users.name===cases.attorney ? 'selected' : '' %>>
-                    <%= users.name %>
+                <option value="<%= users.username %>" <%=users.username===cases.attorney ? 'selected' : '' %>>
+                    <%= users.username %>
                 </option>
                 <% }) %>
         </select>
@@ -29,5 +29,4 @@
         </select>
         <input type="submit" value="Update">
     </form>
-
     <%- include('include/footer') %>

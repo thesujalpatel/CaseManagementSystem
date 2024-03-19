@@ -15,12 +15,10 @@ body {
   background-color: var(--bg);
   font-family: "Custome";
 }
-
 .side-by-side {
   display: grid;
   grid-template-columns: max-content auto;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,6 +36,9 @@ body {
 @font-face {
   font-family: Custome;
   src: url("font/museo700regular.ttf");
+}
+.back {
+  cursor: pointer;
 }
 .universe {
   min-height: 100vh;
@@ -123,12 +124,12 @@ body {
   letter-spacing: 2px;
 }
 
-.ongoing {
+.full-card {
   width: 100%;
   border-collapse: collapse;
 }
 
-.ongoing tr {
+.full-card tr {
   text-align: center;
   height: 50px;
   border-bottom: 2px solid var(--title_bottom);
@@ -237,7 +238,6 @@ i {
   border: 6px solid var(--color1);
 }
 
-
 .footer {
   position: relative;
   z-index: 3;
@@ -248,9 +248,8 @@ i {
   background-color: var(--graph_bg);
   text-align: center;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
   font-weight: 900;
-  height: 100px;
   border-top: 5px solid var(--card_title_bg);
 }
 .op:hover,
@@ -560,10 +559,14 @@ i {
   transition: 0.2s all linear;
 }
 
-/* Case page */
-.cases-space .card{
+/* Other pages */
+.appointments-space .card,
+.cases-space .card,
+.attorney-space .card {
   height: 80vh;
 }
-.cases-space .card-title{
+.appointments-space .card-title,
+.cases-space .card-title,
+.attorney-space .card-title {
   height: 12%;
 }

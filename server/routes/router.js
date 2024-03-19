@@ -8,7 +8,9 @@ const services = require("../services/render");
 
 const caseController = require("../controller/case");
 const userController = require("../controller/user");
+const appointmentController = require("../controller/appointment");
 const configController = require("../controller/config");
+const userDB = require("../model/userdb");
 
 var store = new mongoSession({
   uri: config.mongo_uri,
@@ -39,8 +41,19 @@ const isAdmin = (req, res, next) => {
 };
 route.get("/", services.landing);
 route.get("/dashboard", isAuth, services.dashboard);
+
 route.get("/appointments", isAuth, services.appointments);
+route.get(
+  "/appointments/createappointment",
+  isAuth,
+  services.createappointment
+);
+
 route.get("/cases", isAuth, services.cases);
+route.get("/cases/createcase", isAuth, services.createcase);
+route.get("/cases/updatecase", isAuth, services.updatecase);
+route.get("/cases/casedetail", isAuth, services.casedetail);
+
 route.get("/attorney", isAuth, services.attorney);
 route.get("/features", isAuth, services.features);
 route.get("/ftc", isAuth, services.ftc);
@@ -49,10 +62,6 @@ route.get("/authentication", isAuth, services.authentication);
 route.get("/miscellaneous", isAuth, services.miscellaneous);
 
 route.get("/admin", isAuth, isAdmin, services.admin);
-
-route.get("/createcase", isAuth, services.createcase);
-route.get("/updatecase", isAuth, services.updatecase);
-route.get("/casedetail", isAuth, services.casedetail);
 
 route.get("/signup", services.signup);
 route.get("/signin", services.signin);
@@ -63,10 +72,13 @@ route.get("/api/cases", caseController.findcase);
 route.put("/api/cases/:id", caseController.updatecase);
 route.delete("/api/cases/:id", caseController.deletecase);
 
+route.post("/api/appointments", appointmentController.createappointment);
+route.get("/api/appointments", appointmentController.findappointment);
+
 route.post("/api/users", userController.createuser);
 route.get("/api/users", userController.finduser);
-route.post("/signin", userController.signin);
-route.post("/signout", userController.signout);
+route.post("/api/signin", userController.signin);
+route.post("/api/signout", userController.signout);
 
 route.get("/config", configController.config);
 

@@ -50,7 +50,7 @@
         <div class="card">
             <div class="card-title">Ongoing Cases</div>
             <div class="card-backdrop">
-                <table class="ongoing">
+                <table class="full-card">
                     <% cases.forEach((caseItem)=> { %>
                         <% if (caseItem.status=="ongoing" ) { %>
 
@@ -85,7 +85,7 @@
                                     </div>
                                 </td>
                                 <td class="operation1">
-                                    <a href="/updatecase?id=<%= caseItem._id %>">
+                                    <a href="/cases/updatecase?id=<%= caseItem._id %>">
                                         <div class="op">
                                             <i class="fa-solid fa-file-pen"></i>
                                         </div>

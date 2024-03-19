@@ -1,9 +1,8 @@
 <%- include('include/header') %>
 
-    <form action="/signin" method="post" name="signin" id="signin">
-        <input type="text" name="name" id="name" placeholder="Name" required>
+    <form action="/api/signin" method="post" name="signin" id="signin">
+        <input type="text" name="username" id="name" placeholder="User Name" required>
         <input type="password" name="password" id="password" placeholder="Password" required>
         <input type="submit" value="Submit">
     </form>
-
     <%- include('include/footer') %>

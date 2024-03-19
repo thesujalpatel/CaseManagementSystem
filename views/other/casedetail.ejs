@@ -1,12 +1,13 @@
 <%- include('include/header') %>
-<div class="cases-space">
-    <div class="card">
-        <div class="card-title">Case Details</div>
-        <div class="card-backdrop">
-            <table class="ongoing">
+    <div class="cases-space">
+        <div class="back">Back</div>
+        <div class="card">
+            <div class="card-title">Case Details</div>
+            <div class="card-backdrop">
+                <table class="ongoing">
                     <tr>
                         <td class="image">
-                            <image src="<%= data.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                            <image src="../<%= data.pfp.imageUrl %>" alt="PFP" class="img"></image>
                         </td>
                         <td class="name">
                             <div class="title">
@@ -41,15 +42,15 @@
                             </div>
                         </td>
                         <td class="operation2">
-                            <div class="op" data-id="<%= data._id %>">
-                                <a class="delete-op" data-id="<%= data._id %>">
+                            <a class="delete-op" data-id="<%= data._id %>">
+                                <div class="op">
                                     <i class="fa-solid fa-eye"></i>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         </td>
                     </tr>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
-</div>
     <%- include('include/footer') %>

@@ -6,7 +6,7 @@ exports.createcase = (req, res) => {
     res.status(400).send("Content can not be empty!");
     return;
   }
-  var infoFinder = userDB.findOne({ name: req.body.name });
+  var infoFinder = userDB.findOne({ username: req.body.username });
   infoFinder.then((info) => {
     const caseinfo = new caseDB({
       name: req.body.name,
@@ -73,7 +73,7 @@ exports.updatecase = (req, res) => {
     return res.status(400).send({ message: "Data to update can not be empty" });
   }
   const id = req.params.id;
-  var infoFinder = userDB.findOne({ name: req.body.name });
+  var infoFinder = userDB.findOne({ username: req.body.username });
   infoFinder.then((info) => {
     const updateData = {
       ...req.body,

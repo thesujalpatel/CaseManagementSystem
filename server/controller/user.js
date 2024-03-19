@@ -7,7 +7,7 @@ const stroage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(
       null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      file.fieldname + "-" + req.body._id + path.extname(file.originalname)
     );
   },
 });
@@ -25,13 +25,14 @@ exports.createuser = (req, res) => {
     }
     // find user data from database to check user already exist or not
     userDB
-      .findOne({ name: req.body.name })
+      .findOne({ username: req.body.username })
       .then((existingUser) => {
         if (existingUser) {
           res.status(409).send({ message: "User already exists" });
         } else {
           var hashedPassword = bcrypt.hashSync(req.body.password, 12);
           const userinfo = new userDB({
+            username: req.body.username,
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
@@ -103,7 +104,7 @@ exports.finduser = (req, res) => {
   }
 };
 exports.signin = (req, res) => {
-  var infoFinder = userDB.findOne({ name: req.body.name });
+  var infoFinder = userDB.findOne({ username: req.body.username });
   infoFinder.then((data) => {
     if (!data) {
       res.status(404).send({ message: "User not found" });
@@ -111,6 +112,7 @@ exports.signin = (req, res) => {
       var isAuth = bcrypt.compareSync(req.body.password, data.password);
       if (isAuth) {
         req.session.isAuth = true;
+        req.session.userId = data._id;
         if (data.role === "admin") {
           req.session.isAdmin = true;
         }

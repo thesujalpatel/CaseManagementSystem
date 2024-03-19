@@ -13,10 +13,12 @@ fetch("/config")
 
     var menu_open = true;
 
+    $(".back").click(function () {
+      location.href = document.referrer;
+    });
     $(".scroll-top-icon").click(function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
     // Menu botton animation
     var nevListItems = $(".nev, .nev-section");
     var menubtn = $(".nev-btn, .logo-img");
@@ -88,22 +90,25 @@ fetch("/config")
       };
       if (confirm("Do you want to delete this case?")) {
         $.ajax(request).done(function (response) {
-          alert("Case deleted successfully");
-          return location.reload();
+          return (location.href = document.referrer);
         });
       }
     });
     $("#addcases").submit(function (event) {
       alert("Case Added Successfully");
     });
+
+    // Signout operation
     $(".signout").click(function () {
       var request = {
-        url: `http://localhost:${port}/signout`,
+        url: `http://localhost:${port}/api/signout`,
         method: "POST",
       };
-      $.ajax(request).done(function (response) {
-        location.href = "/signin";
-      });
+      if (confirm("Do you want to SignOut?")) {
+        $.ajax(request).done(function (response) {
+          location.href = "/signin";
+        });
+      }
     });
 
     var url = window.location.href;

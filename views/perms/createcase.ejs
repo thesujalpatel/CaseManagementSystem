@@ -4,16 +4,16 @@
         <select name="name">
             <option selected disabled hidden>Select client</option>
             <% users.forEach((users)=> { %>
-                <option value="<%= users.name %>">
-                    <%= users.name %>
+                <option value="<%= users.username %>">
+                    <%= users.username %>
                 </option>
                 <% }) %>
         </select>
         <select name="attorney">
             <option selected disabled hidden>Select attorney</option>
             <% users.forEach((users)=> { %>
-                <option value="<%= users.name %>">
-                    <%= users.name %>
+                <option value="<%= users.username %>">
+                    <%= users.username %>
                 </option>
                 <% }) %>
         </select>
@@ -21,5 +21,4 @@
         <textarea name="description" id="description" placeholder="Description"></textarea>
         <input type="submit" value="Submit">
     </form>
-
     <%- include('include/footer') %>
