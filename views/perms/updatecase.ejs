@@ -1,17 +1,17 @@
 <%- include('include/header') %>
 
     <form action="" name="updatecases" id="updatecases">
-        <input type="hidden" value="<%= cases._id %>" name="id" placeholder="Client name" required>
-        <select name="name">
+        <input type="hidden" value="<%= cases._id %>" name="id" placeholder="username" required>
+        <select name="clientname">
             <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>" <%=users.username===cases.name ? 'selected' : '' %>>
+                <option value="<%= users.username %>">
                     <%= users.username %>
                 </option>
                 <% }) %>
         </select>
         <select name="attorney">
             <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>" <%=users.username===cases.attorney ? 'selected' : '' %>>
+                <option value="<%= users.username %>">
                     <%= users.username %>
                 </option>
                 <% }) %>

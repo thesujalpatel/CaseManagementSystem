@@ -2,181 +2,181 @@ const userDB = require("../model/userdb");
 const axios = require("axios");
 const config = require("../../config.json");
 
-exports.landing = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("landing", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.dashboard = (req, res) => {
+let getAllData = (req, res, render) => {
   axios
     .all([
       axios.get(`http://localhost:${config.port}/api/cases`, {
         params: { id: req.query.id },
       }),
-      axios.get(`http://localhost:${config.port}/api/users`),
+      axios.get(`http://localhost:${config.port}/api/users`, {
+        params: { id: req.query.user_id },
+      }),
+      axios.get(`http://localhost:${config.port}/api/appointments`, {
+        params: { id: req.query.appointment_id },
+      }),
     ])
     .then(
-      axios.spread((casesResponse, userResponse) => {
+      axios.spread((casesResponse, userResponse, appointmentResponse) => {
+        if (req.query.id) {
+          const data = casesResponse.data;
+          userDB.findOne({ username: data.client }).then((clientinfo) => {
+            data.clientInfo = {
+              username: clientinfo.username,
+              name: clientinfo.name,
+              email: clientinfo.email,
+              phone: clientinfo.phone,
+              pfp: clientinfo.pfp,
+            };
+          });
+          userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
+            data.attorneyInfo = {
+              username: attorneyinfo.username,
+              name: attorneyinfo.name,
+              email: attorneyinfo.email,
+              phone: attorneyinfo.phone,
+              pfp: attorneyinfo.pfp,
+            };
+          });
+        } else {
+          casesResponse.data.forEach((data) => {
+            userDB.findOne({ username: data.client }).then((clientinfo) => {
+              data.clientInfo = {
+                username: clientinfo.username,
+                name: clientinfo.name,
+                email: clientinfo.email,
+                phone: clientinfo.phone,
+                pfp: clientinfo.pfp,
+              };
+            });
+            userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
+              data.attorneyInfo = {
+                username: attorneyinfo.username,
+                name: attorneyinfo.name,
+                email: attorneyinfo.email,
+                phone: attorneyinfo.phone,
+                pfp: attorneyinfo.pfp,
+              };
+            });
+          });
+        }
+        if (req.query.user_id) {
+          const data = userResponse.data;
+          userDB.findOne({ username: data.client }).then((clientinfo) => {
+            data.clientInfo = {
+              username: clientinfo.username,
+              name: clientinfo.name,
+              email: clientinfo.email,
+              phone: clientinfo.phone,
+              pfp: clientinfo.pfp,
+            };
+          });
+          userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
+            data.attorneyInfo = {
+              username: attorneyinfo.username,
+              name: attorneyinfo.name,
+              email: attorneyinfo.email,
+              phone: attorneyinfo.phone,
+              pfp: attorneyinfo.pfp,
+            };
+          });
+        } else {
+          appointmentResponse.data.forEach((data) => {
+            userDB.findOne({ username: data.client }).then((clientinfo) => {
+              data.clientInfo = {
+                username: clientinfo.username,
+                name: clientinfo.name,
+                email: clientinfo.email,
+                phone: clientinfo.phone,
+                pfp: clientinfo.pfp,
+              };
+            });
+            userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
+              data.attorneyInfo = {
+                username: attorneyinfo.username,
+                name: attorneyinfo.name,
+                email: attorneyinfo.email,
+                phone: attorneyinfo.phone,
+                pfp: attorneyinfo.pfp,
+              };
+            });
+          });
+        }
         userDB.findById(req.session.userId).then((firstperson) => {
-          res.render("dashboard", {
+          res.render(render, {
             cases: casesResponse.data,
             users: userResponse.data,
-            config: config,
+            appointments: appointmentResponse.data,
             firstperson: firstperson,
+            config: config,
           });
         });
       })
     );
 };
 
-exports.appointments = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("appointments", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.cases = (req, res) => {
-  axios
-    .all([
-      axios.get(`http://localhost:${config.port}/api/cases`),
-      axios.get(`http://localhost:${config.port}/api/users`),
-    ])
-    .then(
-      axios.spread((casesResponse, userResponse) => {
-        userDB.findById(req.session.userId).then((firstperson) => {
-          res.render("cases", {
-            cases: casesResponse.data,
-            users: userResponse.data,
-            config: config,
-            firstperson: firstperson,
-          });
-        });
-      })
-    );
-};
-
-exports.attorney = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("attorney", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.features = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("features", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.ftc = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("ftc", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.aw = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("aw", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.authentication = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("authentication", { config: config, firstperson: firstperson });
-  });
-};
-
-exports.miscellaneous = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("miscellaneous", { config: config, firstperson: firstperson });
-  });
-};
-exports.admin = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("admin", { config: config, firstperson: firstperson });
-  });
+exports.landing = (req, res) => {
+  res.render("landing", { config: config });
 };
 
 exports.signup = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("signup", { config: config, firstperson: firstperson });
-  });
+  res.render("signup", { config: config });
 };
 
 exports.signin = (req, res) => {
-  userDB.findById(req.session.userId).then((firstperson) => {
-    res.render("signin", { config: config, firstperson: firstperson });
-  });
+  res.render("signin", { config: config });
+};
+
+exports.dashboard = (req, res) => {
+  getAllData(req, res, "dashboard");
+};
+
+exports.appointments = (req, res) => {
+  getAllData(req, res, "appointments");
+};
+
+exports.cases = (req, res) => {
+  getAllData(req, res, "cases");
+};
+
+exports.attorney = (req, res) => {
+  getAllData(req, res, "attorney");
+};
+
+exports.features = (req, res) => {
+  getAllData(req, res, "features");
+};
+
+exports.ftc = (req, res) => {
+  getAllData(req, res, "ftc");
+};
+
+exports.aw = (req, res) => {
+  getAllData(req, res, "aw");
+};
+
+exports.authentication = (req, res) => {
+  getAllData(req, res, "authentication");
+};
+
+exports.miscellaneous = (req, res) => {
+  getAllData(req, res, "miscellaneous");
+};
+exports.admin = (req, res) => {
+  getAllData(req, res, "admin");
 };
 
 exports.createappointment = (req, res) => {
-  axios
-    .all([
-      axios.get(`http://localhost:${config.port}/api/users`),
-      axios.get(`http://localhost:${config.port}/api/appointments`),
-    ])
-    .then(
-      axios.spread((userResponse, appointmentResponse) => {
-        userDB.findById(req.session.userId).then((firstperson) => {
-          res.render("newappointment", {
-            users: userResponse.data,
-            appointments: appointmentResponse.data,
-            config: config,
-            firstperson: firstperson,
-          });
-        });
-      })
-    );
+  getAllData(req, res, "newappointment");
 };
 
 exports.createcase = (req, res) => {
-  axios
-    .get(`http://localhost:${config.port}/api/users`)
-    .then(function (response) {
-      userDB.findById(req.session.userId).then((firstperson) => {
-        res.render("createcase", {
-          users: response.data,
-          config: config,
-          firstperson: firstperson,
-        });
-      });
-    });
+  getAllData(req, res, "createcase");
 };
 
 exports.updatecase = (req, res) => {
-  axios
-    .all([
-      axios.get(`http://localhost:${config.port}/api/cases`, {
-        params: { id: req.query.id },
-      }),
-      axios.get(`http://localhost:${config.port}/api/users`),
-    ])
-    .then(
-      axios.spread((casesResponse, userResponse) => {
-        userDB.findById(req.session.userId).then((firstperson) => {
-          res.render("updatecase", {
-            cases: casesResponse.data,
-            users: userResponse.data,
-            config: config,
-            firstperson: firstperson,
-          });
-        });
-      })
-    );
+  getAllData(req, res, "updatecase");
 };
 
 exports.casedetail = (req, res) => {
-  axios
-    .get(`http://localhost:${config.port}/api/cases`, {
-      params: { id: req.query.id },
-    })
-    .then(function (casedata) {
-      userDB.findById(req.session.userId).then((firstperson) => {
-        res.render("casedetail", {
-          data: casedata.data,
-          config: config,
-          firstperson: firstperson,
-        });
-      });
-    });
+  getAllData(req, res, "casedetail");
 };

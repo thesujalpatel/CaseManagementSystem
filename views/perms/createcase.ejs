@@ -1,7 +1,7 @@
 <%- include('include/header') %>
 
     <form action="/api/cases" method="post" name="addcases" id="addcases">
-        <select name="name">
+        <select name="clientname">
             <option selected disabled hidden>Select client</option>
             <% users.forEach((users)=> { %>
                 <option value="<%= users.username %>">
@@ -9,7 +9,7 @@
                 </option>
                 <% }) %>
         </select>
-        <select name="attorney">
+        <select name="attorneyname">
             <option selected disabled hidden>Select attorney</option>
             <% users.forEach((users)=> { %>
                 <option value="<%= users.username %>">

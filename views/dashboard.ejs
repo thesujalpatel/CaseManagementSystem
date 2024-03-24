@@ -53,31 +53,29 @@
                 <table class="full-card">
                     <% cases.forEach((caseItem)=> { %>
                         <% if (caseItem.status=="ongoing" ) { %>
-
-
                             <tr>
                                 <td class="image">
-                                    <image src="<%= caseItem.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                    <image src="<%= caseItem.clientInfo.pfp.imageUrl %>" alt="PFP" class="img"></image>
                                 </td>
                                 <td class="name">
                                     <div class="title">
-                                        <%= caseItem.name %>
+                                        <%= caseItem.clientInfo.name %>
                                     </div>
                                     <div class="sub-title">
-                                        <%= caseItem.email %>
+                                        <%= caseItem.clientInfo.email %>
                                     </div>
                                 </td>
                                 <td class="type">
-                                    <div class="sub-title">Case Type</div>
                                     <div class="title">
                                         <%= caseItem.type %>
                                     </div>
+                                    <div class="sub-title">Case Type</div>
                                 </td>
                                 <td class="att">
-                                    <div class="sub-title">Attorney</div>
                                     <div class="title">
-                                        <%= caseItem.attorney %>
+                                        <%= caseItem.attorneyInfo.name %>
                                     </div>
+                                    <div class="sub-title">Attorney</div>
                                 </td>
                                 <td class="hear">
                                     <div class="backfill">
@@ -87,12 +85,12 @@
                                 <td class="operation1">
                                     <a href="/cases/updatecase?id=<%= caseItem._id %>">
                                         <div class="op">
-                                            <i class="fa-solid fa-file-pen"></i>
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                         </div>
                                     </a>
                                 </td>
                                 <td class="operation2">
-                                    <a class="delete-op" data-id="<%= caseItem._id %>">
+                                    <a href="/cases/casedetail?id=<%= caseItem._id %>">
                                         <div class="op">
                                             <i class="fa-solid fa-eye"></i>
                                         </div>
@@ -112,14 +110,15 @@
                         <% for( let index=cases.length-1; index>= 0 ; index-- ) { %>
                             <tr>
                                 <td class="image">
-                                    <img src="<%= cases[index].pfp.imageUrl %>" alt="img" class="img"></image>
+                                    <img src="<%= cases[index].clientInfo.pfp.imageUrl %>" alt="img" class="img">
+                                    </image>
                                 </td>
                                 <td class="matter-name">
                                     <div class="title">
                                         <%= cases[index].type %>
                                     </div>
                                     <div class="sub-title">
-                                        <%= cases[index].name %>
+                                        <%= cases[index].clientInfo.name %>
                                     </div>
                                 </td>
                             </tr>

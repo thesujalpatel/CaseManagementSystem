@@ -3,19 +3,12 @@
         <select name="attorney">
             <option selected disabled hidden>Select attorney</option>
             <% users.forEach((users)=> { %>
-                <option value="<%= users.name %>">
-                    <%= users.name %>
+                <option value="<%= users.username %>">
+                    <%= users.username%>
                 </option>
                 <% }) %>
         </select>
-        <select name="client">
-            <option selected disabled hidden>Select client</option>
-            <% users.forEach((users)=> { %>
-                <option value="<%= users.name %>">
-                    <%= users.name %>
-                </option>
-                <% }) %>
-        </select>
+        <input type="hidden" name="client" value="<%= firstperson.username %>" required>
         <input type="datetime-local" name="date" required>
         <textarea name="description" id="description" placeholder="Description"></textarea>
         <input type="submit" value="Submit">

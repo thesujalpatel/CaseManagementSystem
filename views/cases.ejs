@@ -8,27 +8,27 @@
                         <% cases.forEach((caseItem)=> { %>
                             <tr>
                                 <td class="image">
-                                    <image src="<%= caseItem.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                    <image src="<%= caseItem.clientInfo.pfp.imageUrl %>" alt="PFP" class="img"></image>
                                 </td>
                                 <td class="name">
                                     <div class="title">
-                                        <%= caseItem.name %>
+                                        <%= caseItem.clientInfo.name %>
                                     </div>
                                     <div class="sub-title">
-                                        <%= caseItem.email %>
+                                        <%= caseItem.clientInfo.email %>
                                     </div>
                                 </td>
                                 <td class="type">
-                                    <div class="sub-title">Case Type</div>
                                     <div class="title">
                                         <%= caseItem.type %>
                                     </div>
+                                    <div class="sub-title">Case Type</div>
                                 </td>
                                 <td class="att">
-                                    <div class="sub-title">Attorney</div>
                                     <div class="title">
-                                        <%= caseItem.attorney %>
+                                        <%= caseItem.attorneyInfo.name %>
                                     </div>
+                                    <div class="sub-title">Attorney</div>
                                 </td>
                                 <td class="hear">
                                     <div class="backfill">
@@ -38,7 +38,7 @@
                                 <td class="operation1">
                                     <a href="/cases/updatecase?id=<%= caseItem._id %>">
                                         <div class="op">
-                                            <i class="fa-solid fa-file-pen"></i>
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                         </div>
                                     </a>
                                 </td>

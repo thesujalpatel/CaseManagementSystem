@@ -1,11 +1,7 @@
 const mongooes = require("mongoose");
 
 var schema = new mongooes.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
+  client: {
     type: String,
     required: true,
   },
@@ -32,11 +28,6 @@ var schema = new mongooes.Schema({
   revenue: {
     type: Number,
     required: false,
-  },
-  pfp: {
-    data: Buffer,
-    contentType: String,
-    imageUrl: String,
   },
   createDate: {
     type: Date,

@@ -110,6 +110,19 @@ fetch("/config")
         });
       }
     });
+    // Print Function
+    $(".print").click(function () {
+      var printContents = $(".print-content").html();
+      var originalContents = $("html").html();
+      var a = window.open();
+      a.document.write(originalContents);
+      a.document.body.classList.add("active-print");
+      a.document.body.innerHTML = printContents;
+      setTimeout(() => {
+        a.print();
+        a.close();
+      }, 500);
+    });
 
     var url = window.location.href;
     const selected_array = {

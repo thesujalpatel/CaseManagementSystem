@@ -570,3 +570,26 @@ i {
 .attorney-space .card-title {
   height: 12%;
 }
+.active-print .non-print {
+  display: none;
+}
+.active-print .card-title {
+  height: 70px;
+}
+.active-print .card {
+  height: 100vh;
+  width: 100vw;
+  border-radius: 0;
+  margin: 0;
+}
+.cd-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cic {
+  background-color: var(--bg);
+  margin: 8px;
+  border-radius: 10px;
+  flex-grow: 1;
+  flex-basis: 150px;
+}

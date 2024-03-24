@@ -6,36 +6,30 @@ exports.createcase = (req, res) => {
     res.status(400).send("Content can not be empty!");
     return;
   }
-  var infoFinder = userDB.findOne({ username: req.body.username });
-  infoFinder.then((info) => {
-    const caseinfo = new caseDB({
-      name: req.body.name,
-      email: info.email,
-      attorney: req.body.attorney,
-      type: req.body.type,
-      description: req.body.description,
-      status: "ongoing",
-      hearing: "no",
-      revenue: null,
-      pfp: info.pfp,
-      createDate: Date.now(),
-      updateDate: null,
-      isFinished: false,
-    });
-    caseinfo
-      .save(caseinfo)
-      .then((data) => {
-        // res.send(data);
-        res.redirect("/admin");
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message ||
-            "Some error occurred while creating a create operation",
-        });
-      });
+  const caseinfo = new caseDB({
+    client:  req.body.clientname ,
+    attorney:  req.body.attorneyname ,
+    type: req.body.type,
+    description: req.body.description,
+    status: "ongoing",
+    hearing: "no",
+    revenue: null,
+    createDate: Date.now(),
+    updateDate: null,
+    isFinished: false,
   });
+  caseinfo
+    .save(caseinfo)
+    .then((data) => {
+      res.redirect("/admin");
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while creating a create operation",
+      });
+    });
 };
 exports.findcase = (req, res) => {
   if (req.query.id) {
@@ -78,8 +72,6 @@ exports.updatecase = (req, res) => {
     const updateData = {
       ...req.body,
       updateDate: Date(Date.now()),
-      email: info.email,
-      pfp: info.pfp,
       isFinish: req.body.status == "ongoing" ? false : true,
       hearing:
         req.body.hearing == "0" || !req.body.hearing ? "no" : req.body.hearing,

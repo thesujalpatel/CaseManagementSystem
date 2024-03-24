@@ -2,13 +2,11 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
-const config = require("./config.json");
+const { port, domain } = require("./config.json");
 
 const connectionDB = require("./server/database/connection");
 
 const app = express();
-
-const port = config.port;
 
 app.use(morgan("tiny"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,5 +28,5 @@ app.use("/uploads", express.static(path.resolve(__dirname, "assets/uploads")));
 app.use("/", require("./server/routes/router"));
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on ${domain}:${port}`);
 });

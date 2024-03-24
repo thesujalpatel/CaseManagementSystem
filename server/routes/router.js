@@ -10,7 +10,6 @@ const caseController = require("../controller/case");
 const userController = require("../controller/user");
 const appointmentController = require("../controller/appointment");
 const configController = require("../controller/config");
-const userDB = require("../model/userdb");
 
 var store = new mongoSession({
   uri: config.mongo_uri,
@@ -43,11 +42,7 @@ route.get("/", services.landing);
 route.get("/dashboard", isAuth, services.dashboard);
 
 route.get("/appointments", isAuth, services.appointments);
-route.get(
-  "/appointments/createappointment",
-  isAuth,
-  services.createappointment
-);
+// route.get("/appointments/createappointment",isAuth,services.createappointment);
 
 route.get("/cases", isAuth, services.cases);
 route.get("/cases/createcase", isAuth, services.createcase);
