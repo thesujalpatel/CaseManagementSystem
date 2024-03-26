@@ -2,14 +2,14 @@ fetch("/config")
   .then((response) => response.json())
   .then((config) => {
     var port = config.port;
+    var colors = config.colors;
 
-    const color1 = "#1F1717";
-    const color2 = "#CE5A67";
-    const color3 = "#F4BF96";
-    const grid = "#ff9c507d";
-    const tooltip_bg = "#F5F5DC";
-    const tooltip_border = "#79155B";
-    const tooltip_title = "#79155B";
+    const background = colors.background;
+    const sub_canvas = colors.sub_canvas;
+    const canvas = colors.canvas;
+    const primary = colors.primary;
+    const secondary = colors.secondary;
+    const tertiary = colors.tertiary;
 
     var menu_open = true;
 
@@ -20,8 +20,8 @@ fetch("/config")
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
     // Menu botton animation
-    var nevListItems = $(".nev, .nev-section");
-    var menubtn = $(".nev-btn, .logo-img");
+    var nevListItems = $(".nev");
+    var menubtn = $(".nev-btn");
     menubtn.click(function () {
       if (menu_open) {
         $(".web-name").fadeTo(190, 0).hide(190);
@@ -29,7 +29,7 @@ fetch("/config")
         $(".div").fadeTo(500, 0).hide(500);
         $(".option-title").fadeTo(400, 0).hide();
         nevListItems.animate({ width: "40px" }, 500);
-        $(".spacial").show(500).fadeTo(500, 1);
+        $(".spacial").show(500).animate({ margin: "0" },500).fadeTo(500, 1);
         $(".nev-btn").removeClass("selected");
         menu_open = false;
 
@@ -38,19 +38,26 @@ fetch("/config")
             width: "25px",
             height: "25px",
           });
+          $(".spacial").css({
+            "background-color": "transparent",
+          });
         }, 500);
       } else {
-        $(".spacial").show(500).fadeTo(500, 1);
+        $(".spacial")
+        .animate({
+          margin: "10px 20px 20px 20px",
+        })
+        .show(500)
+        .fadeTo(500, 1)
+          .css({ "background-color": background });
+
         $(".option-title").show(500).fadeTo(500, 1);
         $(".div").show(500).fadeTo(500, 1);
         $(".nev-sec").show(500).fadeTo(500, 1);
-        $(".logo-img").animate(
-          {
-            width: "50px",
-            height: "50px",
-          },
-          500
-        );
+        $(".logo-img").animate({
+          width: "50px",
+          height: "50px",
+        });
         $(".nev-btn").addClass("selected");
         nevListItems.animate({ width: "250px" }, 500);
         menu_open = true;
@@ -61,7 +68,14 @@ fetch("/config")
         }, 500);
       }
     });
-
+    $(".input").focus(function () {
+      $(this).parent().css({ "border-color": secondary });
+      $(this).parent().find(".ic").css({ "border-right-color": secondary });
+    });
+    $(".input").focusout(function () {
+      $(this).parent().css({ "border-color": "transparent" });
+      $(this).parent().find(".ic").css({ "border-right-color": "transparent" });
+    });
     // Operation for edit case
     $("#updatecases").submit(function (event) {
       event.preventDefault();
@@ -77,7 +91,7 @@ fetch("/config")
       };
       $.ajax(request).done(function (response) {
         alert("Data Saved Successfully");
-        return (location.href = "/dashboard");
+        return (location.href = document.referrer);
       });
     });
 
@@ -346,8 +360,8 @@ fetch("/config")
                 ],
                 borderWidth: 2,
                 tension: 0.3,
-                borderColor: color1,
-                backgroundColor: color1,
+                borderColor: primary,
+                backgroundColor: primary,
               },
               {
                 label: "SETTLED",
@@ -396,22 +410,22 @@ fetch("/config")
                 borderWidth: 2,
                 tension: 0.3,
                 borderDash: [5, 10],
-                borderColor: color2,
-                backgroundColor: color2,
+                borderColor: secondary,
+                backgroundColor: secondary,
               },
             ],
           },
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -419,7 +433,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -429,14 +443,14 @@ fetch("/config")
                 position: "bottom",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
               y: {
@@ -444,14 +458,14 @@ fetch("/config")
                 position: "left",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -508,22 +522,22 @@ fetch("/config")
                 ],
                 borderWidth: 2,
                 tension: 0.3,
-                borderColor: color1,
-                backgroundColor: color1,
+                borderColor: primary,
+                backgroundColor: primary,
               },
             ],
           },
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -531,7 +545,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -541,14 +555,14 @@ fetch("/config")
                 position: "bottom",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
               y: {
@@ -556,14 +570,14 @@ fetch("/config")
                 position: "left",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -578,7 +592,7 @@ fetch("/config")
               {
                 label: "VOTES",
                 data: [c3_won, c3_lost],
-                backgroundColor: [color1, color2],
+                backgroundColor: [primary, secondary],
                 hoverOffset: 4,
                 borderColor: "rgba(0, 0, 0, 0)",
               },
@@ -587,14 +601,14 @@ fetch("/config")
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -602,7 +616,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -625,31 +639,31 @@ fetch("/config")
               {
                 label: "WON",
                 data: [50, 70, 60, 80, 60, 70, 80],
-                backgroundColor: color1,
+                backgroundColor: primary,
               },
               {
                 label: "LOST",
                 data: [15, 25, 30, 20, 35, 40, 30],
-                backgroundColor: color2,
+                backgroundColor: secondary,
               },
               {
                 label: "DECLINED",
                 data: [10, 30, 45, 25, 35, 30, 30],
-                backgroundColor: color3,
+                backgroundColor: tertiary,
               },
             ],
           },
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -657,7 +671,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -669,14 +683,14 @@ fetch("/config")
                 stacked: true,
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
               y: {
@@ -684,14 +698,14 @@ fetch("/config")
                 stacked: true,
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -748,22 +762,22 @@ fetch("/config")
                 ],
                 borderWidth: 2,
                 tension: 0.3,
-                borderColor: color1,
-                backgroundColor: color1,
+                borderColor: primary,
+                backgroundColor: primary,
               },
             ],
           },
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -771,7 +785,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -781,14 +795,14 @@ fetch("/config")
                 position: "bottom",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
               y: {
@@ -796,14 +810,14 @@ fetch("/config")
                 position: "left",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -819,22 +833,22 @@ fetch("/config")
                 data: c4,
                 borderWidth: 2,
                 tension: 0.3,
-                borderColor: color1,
-                backgroundColor: color1,
+                borderColor: primary,
+                backgroundColor: primary,
               },
             ],
           },
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -842,7 +856,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -851,14 +865,14 @@ fetch("/config")
                 position: "bottom",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
               y: {
@@ -866,14 +880,14 @@ fetch("/config")
                 position: "left",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -895,26 +909,26 @@ fetch("/config")
               {
                 label: "WON",
                 data: [30, 20, 25, 10, 15, 5, 20],
-                backgroundColor: color1,
+                backgroundColor: primary,
               },
               {
                 label: "LOST",
                 data: [5, 10, 15, 5, 20, 25, 15],
-                backgroundColor: color2,
+                backgroundColor: secondary,
               },
             ],
           },
           options: {
             plugins: {
               tooltip: {
-                backgroundColor: tooltip_bg,
+                backgroundColor: canvas,
                 titleAlign: "center",
                 cornerRadius: 10,
                 usePointStyle: true,
                 intersect: false,
-                titleColor: tooltip_title,
-                bodyColor: color1,
-                borderColor: tooltip_border,
+                titleColor: sub_canvas,
+                bodyColor: primary,
+                borderColor: sub_canvas,
                 borderWidth: 2,
                 bodyFont: {
                   weight: 600,
@@ -922,7 +936,7 @@ fetch("/config")
               },
               legend: {
                 labels: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },
@@ -931,28 +945,28 @@ fetch("/config")
                 position: "bottom",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
               y: {
                 position: "left",
                 border: {
                   width: 2,
-                  color: color1,
+                  color: primary,
                 },
                 grid: {
-                  color: grid,
-                  tickColor: grid,
+                  color: tertiary,
+                  tickColor: tertiary,
                 },
                 ticks: {
-                  color: color1,
+                  color: primary,
                 },
               },
             },

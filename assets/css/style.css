@@ -1,25 +1,9 @@
-:root {
-  --bg: #dfd7bf;
-  --card_title_bg: #79155b;
-  --graph_bg: #f5f5dc;
-  --text: #fcf5ed;
-  --border: rgb(0, 0, 0);
-  --shadow: #79155b;
-  --title_bottom: #dfd7bf;
-  --color1: #1f1717;
-  --color2: #ce5a67;
-  --color3: #f4bf96;
-}
-
-body {
-  background-color: var(--bg);
-  font-family: "Custome";
-}
-.side-by-side {
-  display: grid;
-  grid-template-columns: max-content auto;
+@font-face {
+  font-family: Custome;
+  src: url("font/museo700regular.ttf");
 }
 * {
+  font-family: "Custome";
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -33,12 +17,185 @@ body {
   display: none;
 }
 
-@font-face {
-  font-family: Custome;
-  src: url("font/museo700regular.ttf");
+body {
+  background-color: var(--background);
 }
+.up-and-down {
+  display: grid;
+}
+.side-by-side {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
 .back {
+  width: 100px;
   cursor: pointer;
+  background-color: var(--secondary);
+  color: var(--canvas);
+  padding: 5px 0 5px 15px;
+  border-bottom-right-radius: 20px;
+  transition: 0.2s all linear;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.back i {
+  color: var(--canvas);
+  margin-right: 5px;
+  transition: 0.2s all linear;
+}
+.back:hover {
+  background-color: var(--primary);
+  transition: 0.2s all linear;
+}
+.back:hover i {
+  color: var(--canvas);
+  transition: 0.2s all linear;
+}
+.form {
+  display: grid;
+  grid-row-gap: 10px;
+}
+.form * {
+  font-size: 15px;
+}
+input {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+  outline: none;
+  padding: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="file"]::file-selector-button {
+  font-family: "Custome";
+  border-radius: 5px;
+  border: 0;
+  background-color: var(--canvas);
+  color: var(--primary);
+  padding: 5px 10px;
+  transition: 0.2s all linear;
+}
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--secondary);
+  color: var(--canvas);
+  transition: 0.2s all linear;
+}
+[type="file"] {
+  padding-top: 10px;
+}
+textarea {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+  resize: none;
+  padding: 13px 10px 0 10px;
+  outline: none;
+}
+::placeholder {
+  color: var(--primary);
+  opacity: 0.75;
+}
+select {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+  padding: 4px;
+  outline: none;
+}
+option {
+  background-color: var(--canvas);
+  color: var(--primary);
+}
+option:hover {
+  background-color: var(--secondary);
+  color: var(--canvas);
+}
+input[type="submit"] {
+  padding: 10px;
+  background-color: var(--secondary);
+  color: var(--canvas);
+  cursor: pointer;
+  transition: 0.2s all linear;
+  border-radius: 10px;
+  border: 3px solid transparent;
+}
+input[type="submit"]:focus {
+  border: 3px solid var(--primary);
+  transition: 0.2s all linear;
+}
+input[type="submit"]:hover {
+  background-color: var(--primary);
+  color: var(--canvas);
+  transition: 0.2s all linear;
+}
+.ii-con {
+  background-color: var(--background);
+  display: flex;
+  border: 3px solid transparent;
+  border-radius: 15px;
+  transition: 0.2s all linear;
+}
+.ic {
+  border-right: 3px solid transparent;
+  transition: 0.2s all linear;
+}
+.ic i {
+  color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+.form-con {
+  display: grid;
+  grid-template-columns: 40vw 20vw;
+  padding: 20px;
+  background-color: var(--canvas);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
+}
+.side-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.side-form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.sf-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+.sf-title i {
+  color: var(--secondary);
+  margin-right: 10px;
+}
+.sfc a {
+  color: var(--sub_canvas);
+  text-decoration: underline;
+  transition: 0.2s all linear;
+}
+.sfc a:hover {
+  color: var(--secondary);
+  transition: 0.2s all linear;
 }
 .universe {
   min-height: 100vh;
@@ -75,7 +232,7 @@ body {
 }
 
 .card {
-  background-color: var(--graph_bg);
+  background-color: var(--canvas);
   border-radius: 20px;
   height: 60vh;
   margin: 10px;
@@ -110,9 +267,9 @@ body {
 }
 .card-title {
   height: 15%;
-  border-bottom: 5px solid var(--title_bottom);
-  color: var(--text);
-  background-color: var(--card_title_bg);
+  border-bottom: 5px solid var(--background);
+  color: var(--canvas);
+  background-color: var(--sub_canvas);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,14 +289,14 @@ body {
 .full-card tr {
   text-align: center;
   height: 50px;
-  border-bottom: 2px solid var(--title_bottom);
+  border-bottom: 2px solid var(--background);
 }
 
 .img {
   height: 50px;
   width: 50px;
   border-radius: 100%;
-  border: 4px solid var(--color2);
+  border: 4px solid var(--secondary);
   transform: translate(0, 4%);
 }
 
@@ -156,12 +313,12 @@ body {
 
 .title {
   text-wrap: nowrap;
-  color: var(--card_title_bg);
+  color: var(--sub_canvas);
   font-size: normal;
 }
 
 .sub-title {
-  color: var(--color2);
+  color: var(--secondary);
   font-size: small;
 }
 
@@ -172,8 +329,8 @@ body {
 }
 
 .backfill {
-  background-color: var(--color2);
-  color: var(--text);
+  background-color: var(--secondary);
+  color: var(--canvas);
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -181,7 +338,7 @@ body {
 }
 
 .op {
-  background-color: var(--color3);
+  background-color: var(--tertiary);
   height: 30px;
   width: 30px;
   border-radius: 5px;
@@ -193,7 +350,7 @@ body {
 }
 
 i {
-  color: var(--color1);
+  color: var(--primary);
 }
 
 .sub-table {
@@ -203,11 +360,11 @@ i {
 
 .sub-table tr {
   height: 50px;
-  border-bottom: 2px solid var(--title_bottom);
+  border-bottom: 2px solid var(--background);
 }
 
 .sop {
-  background-color: var(--color3);
+  background-color: var(--tertiary);
   height: 30px;
   width: 30px;
   border-radius: 5px;
@@ -227,7 +384,7 @@ i {
   height: 17px;
   appearance: none;
   border-radius: 50%;
-  border: 2px solid rgba(121, 21, 91, 0.6);
+  border: 2px solid var(--secondary);
   transition: 0.2s all linear;
 }
 
@@ -235,44 +392,45 @@ i {
     border: 6px solid var(--color2);
 } */
 .radio:checked {
-  border: 6px solid var(--color1);
+  border: 6px solid var(--primary);
 }
 
 .footer {
   position: relative;
   z-index: 3;
-  margin-top: 12px;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: var(--graph_bg);
+  background-color: var(--canvas);
   text-align: center;
   padding-top: 10px;
   padding-bottom: 50px;
   font-weight: 900;
-  border-top: 5px solid var(--card_title_bg);
+  border-top: 5px solid var(--sub_canvas);
 }
 .op:hover,
 .sop:hover {
-  background-color: var(--color1);
+  background-color: var(--primary);
   transition: 0.2s all linear;
   cursor: pointer;
+  color: var(--canvas);
 }
 
 .op:hover i,
 .sop:hover i {
-  color: var(--text);
+  color: var(--canvas);
   transition: 0.2s all linear;
 }
 
 .nev {
+  position: sticky;
+  top: 0;
+  left: 0;
   height: 100vh;
-  position: fixed;
   width: 250px;
   padding-top: 6px;
-  background-color: var(--graph_bg);
+  background-color: var(--canvas);
   text-wrap: nowrap;
-  overflow: scroll;
 }
 
 .nev-sec {
@@ -288,22 +446,20 @@ i {
   margin-bottom: auto;
 }
 
-.nev-section {
-  width: 250px;
-}
-
-.logo > img {
+.logo > svg {
   width: 50px;
   height: 50px;
-  border-radius: 100%;
-  border: 3px solid var(--color2);
 }
-
+.spacial {
+  background-color: var(--background);
+  margin: 10px 20px 20px 20px;
+  border-radius: 15px;
+}
 .web-name {
   display: none;
   font-size: 20px;
   font-weight: 900;
-  color: var(--color2);
+  color: var(--secondary);
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -320,13 +476,13 @@ i {
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  border: 4px solid var(--color2);
+  border: 4px solid var(--secondary);
 }
 
 .dev-name {
   font-size: 20px;
   font-weight: 900;
-  color: var(--color1);
+  color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -334,16 +490,16 @@ i {
 .nev-icon > .i {
   padding: 8px;
   margin: 9px;
-  color: var(--color1);
-  background-color: var(--color3);
+  color: var(--primary);
+  background-color: var(--tertiary);
   border-radius: 20px;
   transition: 0.2s all linear;
 }
 
 .nev-icon > .i:hover {
   transition: 0.2s all linear;
-  background-color: var(--color2);
-  color: var(--text);
+  background-color: var(--secondary);
+  color: var(--canvas);
   cursor: pointer;
 }
 
@@ -367,13 +523,13 @@ i {
   transition: 0.2s all linear;
 }
 .nev-option:hover {
-  background-color: var(--color1);
-  color: var(--text);
+  background-color: var(--primary);
+  color: var(--canvas);
   transition: 0.2s all linear;
 }
 
 .nev-option:hover i {
-  color: var(--text);
+  color: var(--canvas);
   transition: 0.2s all linear;
 }
 
@@ -381,14 +537,14 @@ i {
   margin: 5px 0 5px 0;
   justify-content: center;
   font-size: 12px;
-  color: var(--color2);
+  color: var(--secondary);
   transition: none;
   cursor: default;
 }
 
 .div:hover {
-  background-color: var(--graph_bg);
-  color: var(--color2);
+  background-color: var(--canvas);
+  color: var(--secondary);
   transition: none;
 }
 
@@ -402,7 +558,7 @@ i {
   align-items: center;
   position: sticky;
   top: 0;
-  background-color: var(--bg);
+  background-color: var(--background);
 }
 
 .top-bar > div {
@@ -412,17 +568,17 @@ i {
 
 .page-title {
   font-size: 25px;
-  color: var(--card_title_bg);
+  color: var(--sub_canvas);
   padding-left: 25px;
 }
 .time {
   font-size: 20px;
-  color: var(--card_title_bg);
+  color: var(--sub_canvas);
   text-align: right;
 }
 .date {
   font-size: 15px;
-  color: var(--card_title_bg);
+  color: var(--sub_canvas);
   text-align: right;
 }
 .top-left,
@@ -431,7 +587,7 @@ i {
   align-items: center;
 }
 .nev-btn > i {
-  color: var(--color1);
+  color: var(--primary);
 }
 
 .nev-btn {
@@ -444,29 +600,29 @@ i {
 }
 
 .nev-btn:hover {
-  background-color: var(--color2);
+  background-color: var(--secondary);
   transition: 0.2s all linear;
   cursor: pointer;
 }
 
 .nev-btn:hover i {
-  color: var(--text);
+  color: var(--canvas);
   transition: 0.2s all linear;
 }
 
 .selected {
-  background-color: var(--color2);
-  color: var(--text);
+  background-color: var(--secondary);
+  color: var(--canvas);
 }
 .selected i {
-  color: var(--text);
+  color: var(--canvas);
 }
 .fixtoolbar {
   z-index: 2;
   position: fixed;
   top: 60%;
   left: 100%;
-  background-color: var(--color1);
+  background-color: var(--primary);
   border-radius: 10px;
   transform: translate(-120%, 0%);
   transition: 0.2s all linear;
@@ -478,7 +634,7 @@ i {
   position: fixed;
   top: 100%;
   left: 100%;
-  background-color: var(--color1);
+  background-color: var(--primary);
   border-radius: 10px;
   transform: translate(-120%, -120%);
   opacity: 0.7;
@@ -490,7 +646,7 @@ i {
   height: 30px;
   width: 30px;
   margin: 5px;
-  background-color: var(--color3);
+  background-color: var(--tertiary);
   border-radius: 7px;
   transition: 0.2s all linear;
   display: flex;
@@ -500,7 +656,7 @@ i {
 
 .fixtoolbar > div:hover,
 .chat > div:hover {
-  background-color: var(--color2);
+  background-color: var(--secondary);
   cursor: pointer;
   transition: 0.2s all linear;
   opacity: 1;
@@ -508,13 +664,14 @@ i {
 
 .fixtoolbar > div:hover i,
 .chat > div:hover i {
-  color: var(--text);
+  color: var(--canvas);
   transition: 0.2s all linear;
   opacity: 1;
 }
 
 .fixtoolbar > div > i {
-  color: var(--color1);
+  color: var(--primary);
+  transition: 0.2s all linear;
 }
 
 .fixtoolbar:hover,
@@ -524,7 +681,8 @@ i {
 }
 
 .chat > div > i {
-  color: var(--color1);
+  color: var(--primary);
+  transition: 0.2s all linear;
 }
 
 .scroll-top {
@@ -540,7 +698,7 @@ i {
   height: 30px;
   width: 30px;
   margin: 5px;
-  background-color: var(--color3);
+  background-color: var(--tertiary);
   border-radius: 7px;
   transition: 0.2s all linear;
   display: flex;
@@ -548,25 +706,30 @@ i {
   align-items: center;
 }
 
+.scroll-top > div i {
+  transition: 0.2s all linear;
+}
 .scroll-top > div:hover {
-  background-color: var(--color2);
+  background-color: var(--secondary);
   cursor: pointer;
   transition: 0.2s all linear;
 }
 
 .scroll-top > div:hover i {
-  color: var(--text);
+  color: var(--canvas);
   transition: 0.2s all linear;
 }
 
 /* Other pages */
 .appointments-space .card,
 .cases-space .card,
+.casesdet-space .card,
 .attorney-space .card {
-  height: 80vh;
+  height: 79vh;
 }
 .appointments-space .card-title,
 .cases-space .card-title,
+.casesdet-space .card-title,
 .attorney-space .card-title {
   height: 12%;
 }
@@ -587,9 +750,29 @@ i {
   flex-wrap: wrap;
 }
 .cic {
-  background-color: var(--bg);
+  background-color: var(--background);
   margin: 8px;
   border-radius: 10px;
   flex-grow: 1;
-  flex-basis: 150px;
+  flex-basis: 200px;
+  padding: 15px;
+}
+.casesdet-space .actions {
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+}
+.casesdet-space .operation2 {
+  width: auto;
+  padding: 20px;
+}
+.casesdet-space .op {
+  width: 100px;
+}
+.casesdet-space .op i {
+  margin-right: 5px;
+  transition: 0.2s all linear;
+}
+.casesdet-space .description .title {
+  text-wrap: wrap;
 }

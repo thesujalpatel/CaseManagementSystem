@@ -42,7 +42,7 @@ route.get("/", services.landing);
 route.get("/dashboard", isAuth, services.dashboard);
 
 route.get("/appointments", isAuth, services.appointments);
-// route.get("/appointments/createappointment",isAuth,services.createappointment);
+route.get("/appointments/createappointment",isAuth,services.createappointment);
 
 route.get("/cases", isAuth, services.cases);
 route.get("/cases/createcase", isAuth, services.createcase);
@@ -64,8 +64,8 @@ route.get("/signin", services.signin);
 // API
 route.post("/api/cases", caseController.createcase);
 route.get("/api/cases", caseController.findcase);
-route.put("/api/cases/:id", caseController.updatecase);
-route.delete("/api/cases/:id", caseController.deletecase);
+route.put("/api/cases/:caseid", caseController.updatecase);
+route.delete("/api/cases/:caseid", caseController.deletecase);
 
 route.post("/api/appointments", appointmentController.createappointment);
 route.get("/api/appointments", appointmentController.findappointment);

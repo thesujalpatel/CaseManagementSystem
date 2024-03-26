@@ -1,32 +1,71 @@
 <%- include('include/header') %>
-
-    <form action="" name="updatecases" id="updatecases">
-        <input type="hidden" value="<%= cases._id %>" name="id" placeholder="username" required>
-        <select name="clientname">
-            <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>">
-                    <%= users.username %>
-                </option>
-                <% }) %>
-        </select>
-        <select name="attorney">
-            <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>">
-                    <%= users.username %>
-                </option>
-                <% }) %>
-        </select>
-        <input type="text" value="<%= cases.type %>" name="type" placeholder="Case type" required>
-        <textarea name="description" id="description" placeholder="Description"><%= cases.description %></textarea>
-        <input type="number" value="<%= cases.hearing %>" name="hearing" placeholder="Hearing">
-        <input type="number" value="<%= cases.revenue %>" name="revenue" placeholder="Revenue">
-        <select name="status">
-            <option value="win" <%=cases.status==="win" ? 'selected' : '' %>>Win</option>
-            <option value="lost" <%=cases.status==="lost" ? 'selected' : '' %>>Lost</option>
-            <option value="declined" <%=cases.status==="declined" ? 'selected' : '' %>>Declined</option>
-            <option value="declined" <%=cases.status==="settled" ? 'selected' : '' %>>Settled</option>
-            <option value="ongoing" <%=cases.status==="ongoing" ? 'selected' : '' %>>On going</option>
-        </select>
-        <input type="submit" value="Update">
-    </form>
+<div class="back">
+    <i class="fa-solid fa-circle-left"></i>Back
+  </div>
+    <div class="universe">
+        <div class="form-con">
+            <form action="" class="form" name="updatecases" id="updatecases">
+                <input type="hidden" value="<%= cases._id %>" name="id" placeholder="username" required>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <select name="clientname" class="input">
+                        <% users.forEach((users)=> { %>
+                            <option value="<%= users.username %>">
+                                <%= users.username %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-gavel fa-lg"></i></div>
+                    <select name="attorney" class="input">
+                        <% users.forEach((users)=> { %>
+                            <option value="<%= users.username %>">
+                                <%= users.username %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-puzzle-piece fa-lg"></i></div>
+                    <input type="text" class="input" value="<%= cases.type %>" name="type" placeholder="Case type"
+                        required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-people-roof fa-lg"></i></div>
+                    <input type="number" class="input" value="<%= cases.hearing %>" name="hearing"
+                        placeholder="Hearing">
+                </div>
+                <div class="ii-con">
+                    <div class="ic"><i class="fa-solid fa-sack-dollar fa-lg"></i></div>
+                    <input type="number" class="input" value="<%= cases.revenue %>" name="revenue"
+                        placeholder="Revenue">
+                </div>
+                <div class="ii-con">
+                    <div class="ic"><i class="fa-solid fa-chart-simple fa-lg"></i></div>
+                    <select name="status" class="input">
+                        <option value="win" <%=cases.status==="win" ? 'selected' : '' %>>Win</option>
+                        <option value="lost" <%=cases.status==="lost" ? 'selected' : '' %>>Lost</option>
+                        <option value="declined" <%=cases.status==="declined" ? 'selected' : '' %>>Declined</option>
+                        <option value="declined" <%=cases.status==="settled" ? 'selected' : '' %>>Settled</option>
+                        <option value="ongoing" <%=cases.status==="ongoing" ? 'selected' : '' %>>On going</option>
+                    </select>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-quote-left fa-lg"></i></div>
+                    <textarea name="description" class="input" id="description"
+                        placeholder="Description"><%= cases.description %></textarea>
+                </div>
+                <input type="submit" value="Update">
+            </form>
+            <div class="side-form">
+                <div class="sf-con">
+                    <div class="sf-title">
+                        <i class="fa-solid fa-pen-to-square fa-xl"></i>
+                        <h2>Update Case</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <%- include('include/footer') %>

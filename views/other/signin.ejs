@@ -1,8 +1,27 @@
 <%- include('include/header') %>
-
-    <form action="/api/signin" method="post" name="signin" id="signin">
-        <input type="text" name="username" id="name" placeholder="User Name" required>
-        <input type="password" name="password" id="password" placeholder="Password" required>
-        <input type="submit" value="Submit">
-    </form>
-    <%- include('include/footer') %>
+    <div class="universe">
+        <div class="form-con">
+            <form action="/api/signin" method="post" class="form" name="signin" id="signin">
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <input type="text" class="input" name="username" id="name" placeholder="User Name" required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-key fa-lg"></i></div>
+                    <input type="password" class="input" name="password" id="password" placeholder="Password" required>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="side-form">
+                <div class="sf-con">
+                    <div class="sf-title">
+                        <i class="fa-solid fa-right-to-bracket fa-xl"></i>
+                        <h2>Sign Up</h2>
+                    </div>
+                    <div class="sfc">
+                        <p>Haven't account?<br><a href="/signup">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('include/footer') %>

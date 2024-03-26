@@ -1,20 +1,62 @@
 <%- include('include/header') %>
-
-    <form action="/api/users" method="post" name="signup" id="signup" enctype="multipart/form-data">
-        <input type="text" name="username" id="name" placeholder="User Name" required>
-        <input type="text" name="name" id="name" placeholder="Name" required>
-        <input type="text" name="email" id="email" placeholder="Email" required>
-        <input type="password" name="password" id="password" placeholder="Password" required>
-        <input type="number" name="phone1" id="phone" placeholder="Phone" required>
-        <input type="number" name="phone2" id="phone" placeholder="Phone">
-        <textarea name="description" id="description" placeholder="Description"></textarea>
-        <select name="role">
-            <option selected disabled hidden>Select role</option>
-            <option value="judge">Judge</option>
-            <option value="lawyer">Lawyer</option>
-            <option value="user">User</option>
-        </select>
-        <input type="file" name="pfp" id="pfp" accept="image/*">
-        <input type="submit" value="Submit">
-    </form>
+    <div class="universe">
+        <div class="form-con">
+            <form action="/api/users" method="post" class="form" name="signup" id="signup"
+                enctype="multipart/form-data">
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <input type="text" class="input" name="username" id="name" placeholder="User Name" required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-signature fa-lg"></i></div>
+                    <input type="text" class="input" name="name" id="name" placeholder="Name" required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-envelope fa-lg"></i></div>
+                    <input type="text" class="input" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-key fa-lg"></i></div>
+                    <input type="password" class="input" name="password" id="password" placeholder="Password" required>
+                    <input type="password" class="input" name="vpassword" id="password" placeholder="Re-Write Password"
+                        required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-phone fa-lg"></i></div>
+                    <input type="number" class="input" name="phone1" id="phone" placeholder="Phone" required>
+                    <input type="number" class="input" name="phone2" id="phone" placeholder="Phone">
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-person-circle-check fa-lg"></i></div>
+                    <select name="role" class="input">
+                        <option selected disabled hidden>Select role</option>
+                        <option value="judge">Judge</option>
+                        <option value="lawyer">Lawyer</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-regular fa-id-badge fa-lg"></i></div>
+                    <input type="file" class="input" name="pfp" id="pfp" accept="image/*">
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-quote-left fa-lg"></i></div>
+                    <textarea name="description" class="input description" id="description"
+                        placeholder="Description"></textarea>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="side-form">
+                <div class="sf-con">
+                    <div class="sf-title">
+                        <i class="fa-solid fa-id-card fa-xl"></i>
+                        <h2>Sign Up</h2>
+                    </div>
+                    <div class="sfc">
+                        <p>Already have an account?<br><a href="/signin">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <%- include('include/footer') %>

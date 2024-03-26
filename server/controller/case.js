@@ -32,8 +32,8 @@ exports.createcase = (req, res) => {
     });
 };
 exports.findcase = (req, res) => {
-  if (req.query.id) {
-    const id = req.query.id;
+  if (req.query.caseid) {
+    const id = req.query.caseid;
     caseDB
       .findById(id)
       .then((data) => {
@@ -66,7 +66,7 @@ exports.updatecase = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Data to update can not be empty" });
   }
-  const id = req.params.id;
+  const id = req.params.caseid;
   var infoFinder = userDB.findOne({ username: req.body.username });
   infoFinder.then((info) => {
     const updateData = {
@@ -95,7 +95,7 @@ exports.updatecase = (req, res) => {
   });
 };
 exports.deletecase = (req, res) => {
-  const id = req.params.id;
+  const id = req.params.caseid;
   caseDB
     .findByIdAndDelete(id)
     .then((data) => {

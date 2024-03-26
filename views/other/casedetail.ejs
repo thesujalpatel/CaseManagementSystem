@@ -1,84 +1,108 @@
 <%- include('include/header') %>
-  <div class="cases-space">
-    <div class="back">Back</div>
+  <div class="casesdet-space">
+    <div class="back">
+      <i class="fa-solid fa-circle-left"></i>Back
+    </div>
     <div class="print-content">
       <div class="card">
         <div class="card-title">Case Details</div>
         <div class="card-backdrop">
           <div class="cd-content">
             <div class="cic">
-              <div class="title">Client name</div>
               <div class="sub-title">
+                Client name
+              </div>
+              <div class="title">
                 <%= cases.clientInfo.name %>
               </div>
             </div>
             <div class="cic">
-              <div class="title">Attorney name</div>
               <div class="sub-title">
+                Attorney name
+              </div>
+              <div class="title">
                 <%= cases.attorneyInfo.name %>
               </div>
             </div>
             <div class="cic">
-              <div class="title">Case type</div>
               <div class="sub-title">
+                Case type
+              </div>
+              <div class="title">
                 <%= cases.type %>
               </div>
             </div>
             <div class="cic">
-              <div class="title">Description</div>
               <div class="sub-title">
-                <%= cases.description %>
+                Status
               </div>
-            </div>
-            <div class="cic">
-              <div class="title">Status</div>
-              <div class="sub-title">
+              <div class="title">
                 <%= cases.status %>
               </div>
             </div>
             <div class="cic">
-              <div class="title">Hearing</div>
               <div class="sub-title">
+                Hearing
+              </div>
+              <div class="title">
                 <%= cases.hearing %>
               </div>
             </div>
             <div class="cic">
-              <div class="title">Revenue</div>
               <div class="sub-title">
+                Complete Status
+              </div>
+              <div class="title">
+                <%= cases.isFinished ? "Finished" : "Not Finished" %>
+              </div>
+            </div>
+            <div class="cic">
+              <div class="sub-title">
+                Create Date
+              </div>
+              <div class="title">
+                <%= new Date(cases.createDate).toLocaleString() %>
+              </div>
+            </div>
+            <div class="cic">
+              <div class="sub-title">
+                Update Date
+              </div>
+              <div class="title">
+                <%= new Date(cases.updateDate).toLocaleString() %>
+              </div>
+            </div>
+            <div class="cic">
+              <div class="sub-title">
+                Revenue
+              </div>
+              <div class="title">
                 <%= cases.revenue %>
               </div>
             </div>
-            <div class="cic">
-              <div class="title">Create Date</div>
-              <div class="sub-title">
-                <%= cases.createDate %>
+          </div>
+          <div class="cic description">
+            <div class="sub-title">
+              Description
+            </div>
+            <div class="title">
+              <%= cases.description %>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="operation2 non-print">
+              <div class="op print">
+                <i class="fa-solid fa-print"></i>
+                Print
               </div>
             </div>
-            <div class="cic">
-              <div class="title">Update Date</div>
-              <div class="sub-title">
-                <%= cases.updateDate %>
-              </div>
-            </div>
-            <div class="cic">
-              <div class="title">Is Finished</div>
-              <div class="sub-title">
-                <%= cases.isFinished %>
-              </div>
-            </div>
-            <div class="actions">
-              <div class="operation2 non-print">
-                <div class="op print">
-                  <i class="fa-solid fa-print"></i>
+            <div class="operation2 non-print">
+              <a class="delete-op" data-id="<%= cases._id %>">
+                <div class="op">
+                  <i class="fa-solid fa-trash"></i>
+                  Delete
                 </div>
-              </div>
-              <div class="operation2 non-print">
-                <a class="delete-op" data-id="<%= cases._id %>">
-                  <div class="op">
-                    <i class="fa-solid fa-trash"></i>
-                  </div>
-                </a>
-              </div>
+              </a>
             </div>
           </div>
         </div>

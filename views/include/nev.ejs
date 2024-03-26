@@ -21,84 +21,119 @@
         </div>
     </div>
 </div>
-<div class="side-by-side">
-    <div class="nev-section">
-        <div class="nev">
-            <div class="nev-sec spacial">
-                <div class="logo">
-                    <img class="logo-img" src="img/demo-icon.webp">
-                </div>
-                <div class="web-name">
-                    <%= config.website_name %>
-                </div>
-            </div>
-            <div class="nev-sec exception">
-                <div class="dev">
-                    <img class="dev-img" src="<%= firstperson.pfp.imageUrl %>" alt="Profile Image">
-                </div>
-                <div class="dev-name">
-                    <%= firstperson.name %>
-                </div>
-                <div class="nev-icon">
-                    <i class="i fa-solid fa-envelope"></i>
-                    <i class="i fa-solid fa-comment"></i>
-                    <i class="i fa-solid fa-right-from-bracket signout"></i>
-                </div>
-            </div>
-            <div class="nev-secv">
+<div class="up-and-down">
+    <div class="side-by-side">
+        <div class="nev-section">
+            <div class="nev">
+                <div class="nev-sec spacial">
+                    <div class="logo">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <svg class="logo-img" version="1.1" id="katman_1"x="0px" y="0px" viewBox="0 0 841.89 595.28"
+                            style="enable-background:new 0 0 841.89 595.28;" xml:space="preserve">
 
-                <div class="nev-option dashboard">
-                    <div class="option-icon"><i class="i fa-solid fa-house"></i></div>
-                    <div class="option-title">Dashboard</div>
+                            <path class="st0" d="M349.39,395.64c-12.94-13.03-23.18-28.48-30.14-45.48c-6.96-16.99-10.49-35.19-10.41-53.56
+	c-0.03-18.36,3.59-36.53,10.67-53.47c7.08-16.94,17.47-32.29,30.55-45.17c9.9-10.37,15.35-24.19,15.2-38.52
+	c-0.15-14.33-5.89-28.04-16-38.2c-10.11-10.16-23.79-15.97-38.12-16.19c-14.33-0.22-28.18,5.16-38.6,15.01
+	c-46.92,46.7-73.39,110.12-73.59,176.32c-0.2,66.2,25.88,129.78,72.51,176.77c5.04,5.33,11.1,9.6,17.81,12.56
+	c6.72,2.96,13.96,4.54,21.29,4.65c7.34,0.11,14.62-1.24,21.43-3.99c6.8-2.75,12.99-6.83,18.19-12c5.2-5.18,9.32-11.34,12.09-18.13
+	c2.78-6.79,4.18-14.07,4.1-21.4c-0.08-7.34-1.62-14.58-4.54-21.32C358.94,406.78,354.7,400.71,349.39,395.64z" />
+                            <path class="st1" d="M350.07,197.97c13.03-12.94,28.48-23.19,45.47-30.14c17-6.96,35.2-10.49,53.56-10.4
+	c18.36-0.03,36.53,3.6,53.47,10.68c16.94,7.08,32.29,17.46,45.17,30.54c4.96,5.58,11,10.08,17.76,13.25
+	c6.76,3.16,14.09,4.91,21.55,5.15c7.46,0.23,14.89-1.06,21.83-3.79c6.95-2.73,13.26-6.85,18.56-12.11
+	c5.3-5.26,9.47-11.54,12.26-18.46c2.79-6.92,4.14-14.34,3.97-21.8c-0.17-7.46-1.87-14.81-4.98-21.59
+	c-3.11-6.78-7.57-12.86-13.1-17.87c-23.03-23.32-50.43-41.86-80.65-54.55s-62.63-19.3-95.41-19.43
+	c-32.77-0.13-65.25,6.21-95.56,18.66c-30.31,12.45-57.87,30.77-81.08,53.9c-9.25,10.45-14.19,24.02-13.8,37.97
+	c0.39,13.95,6.06,27.23,15.88,37.15c9.82,9.92,23.04,15.73,36.98,16.26C325.91,211.91,339.53,207.12,350.07,197.97z" />
+                            <path class="st2" d="M547.4,396.32c-13.03,12.94-28.48,23.18-45.48,30.14c-16.99,6.96-35.19,10.49-53.56,10.41
+	c-18.36,0.02-36.53-3.61-53.47-10.69c-16.93-7.08-32.29-17.46-45.17-30.54c-5.09-5.11-11.14-9.17-17.79-11.95
+	c-6.66-2.78-13.8-4.21-21.01-4.23c-7.21-0.02-14.36,1.39-21.03,4.13c-6.67,2.75-12.73,6.78-17.85,11.87
+	c-5.11,5.09-9.17,11.14-11.95,17.8c-2.78,6.66-4.21,13.8-4.23,21.01c-0.02,7.22,1.39,14.36,4.13,21.03
+	c2.75,6.67,6.78,12.73,11.87,17.84c23.06,23.32,50.5,41.87,80.74,54.56c30.24,12.7,62.7,19.3,95.49,19.42
+	c32.8,0.13,65.3-6.22,95.64-18.69c30.34-12.46,57.92-30.79,81.16-53.94c5.14-5.09,9.22-11.14,12.01-17.81
+	c2.8-6.67,4.25-13.82,4.28-21.05c0.03-7.23-1.36-14.39-4.1-21.09c-2.74-6.69-6.76-12.78-11.85-17.91
+	c-5.09-5.14-11.14-9.22-17.81-12.01c-6.67-2.8-13.82-4.25-21.05-4.28c-7.23-0.03-14.4,1.36-21.08,4.1
+	C558.62,387.2,552.54,391.23,547.4,396.32z" />
+                            <path class="st3" d="M350.07,197.97c-7.71,7.69-17.53,12.91-28.21,15.01c-10.68,2.1-21.74,0.98-31.79-3.21
+	c-10.04-4.2-18.62-11.28-24.63-20.35c-6.01-9.07-9.2-19.73-9.15-30.61c0.05-10.88,3.33-21.51,9.42-30.53
+	c6.09-9.02,14.73-16.03,24.81-20.13c10.08-4.11,21.15-5.13,31.82-2.93c10.66,2.19,20.43,7.5,28.07,15.26
+	c10.15,10.37,15.81,24.32,15.75,38.83C366.1,173.79,360.32,187.69,350.07,197.97z" />
+                            <path class="st4" d="M349,473.15c-7.71,7.68-17.53,12.9-28.22,14.99c-10.68,2.09-21.75,0.97-31.79-3.24
+	c-10.04-4.2-18.61-11.29-24.62-20.37c-6.01-9.08-9.18-19.74-9.13-30.62c0.06-10.88,3.34-21.51,9.44-30.52
+	c6.1-9.01,14.74-16.02,24.82-20.12c10.08-4.1,21.16-5.11,31.82-2.91c10.66,2.2,20.43,7.52,28.06,15.28
+	c10.16,10.37,15.82,24.32,15.74,38.84C365.06,448.99,359.26,462.89,349,473.15z" />
+                        </svg>
+                    </div>
+                    <div class="web-name">
+                        <%= config.website_name %>
+                    </div>
                 </div>
-                <div class="nev-option appointments">
-                    <div class="option-icon"><i class="i fa-solid fa-calendar-check"></i></div>
-                    <div class="option-title">Appointments</div>
+                <div class="nev-sec exception">
+                    <div class="dev">
+                        <img class="dev-img" src="<%= firstperson.pfp.imageUrl %>" alt="Profile Image">
+                    </div>
+                    <div class="dev-name">
+                        <%= firstperson.name %>
+                    </div>
+                    <div class="nev-icon">
+                        <i class="i fa-solid fa-envelope"></i>
+                        <i class="i fa-solid fa-comment"></i>
+                        <i class="i fa-solid fa-right-from-bracket signout"></i>
+                    </div>
                 </div>
-                <div class="nev-option cases">
-                    <div class="option-icon"><i class="i fa-solid fa-folder-open"></i></div>
-                    <div class="option-title">Cases</div>
-                </div>
-                <div class="nev-option attorney">
-                    <div class="option-icon"><i class="i fa-solid fa-gavel"></i></div>
-                    <div class="option-title">Attorney</div>
-                </div>
-                <div class="nev-option div">
-                    COMPONENTS
-                </div>
-                <div class="nev-option features">
-                    <div class="option-icon"><i class="i fa-solid fa-wand-magic-sparkles"></i></div>
-                    <div class="option-title">Features</div>
-                </div>
-                <div class="nev-option ftc">
-                    <div class="option-icon"><i class="i fa-solid fa-box-archive"></i></div>
-                    <div class="option-title">Form, Table and Charts</div>
-                </div>
-                <div class="nev-option aw">
-                    <div class="option-icon"><i class="i fa-solid fa-soap"></i></div>
-                    <div class="option-title">Apps and Widgets</div>
-                </div>
-                <div class="nev-option authentication">
-                    <div class="option-icon"><i class="i fa-solid fa-circle-check"></i></div>
-                    <div class="option-title">Authentication</div>
-                </div>
-                <div class="nev-option miscellaneous">
-                    <div class="option-icon"><i class="i fa-solid fa-circle-exclamation"></i></div>
-                    <div class="option-title">Miscellaneous</div>
+                <div class="nev-secv">
+
+                    <div class="nev-option dashboard">
+                        <div class="option-icon"><i class="i fa-solid fa-house"></i></div>
+                        <div class="option-title">Dashboard</div>
+                    </div>
+                    <div class="nev-option appointments">
+                        <div class="option-icon"><i class="i fa-solid fa-calendar-check"></i></div>
+                        <div class="option-title">Appointments</div>
+                    </div>
+                    <div class="nev-option cases">
+                        <div class="option-icon"><i class="i fa-solid fa-folder-open"></i></div>
+                        <div class="option-title">Cases</div>
+                    </div>
+                    <div class="nev-option attorney">
+                        <div class="option-icon"><i class="i fa-solid fa-gavel"></i></div>
+                        <div class="option-title">Attorney</div>
+                    </div>
+                    <div class="nev-option div">
+                        COMPONENTS
+                    </div>
+                    <div class="nev-option features">
+                        <div class="option-icon"><i class="i fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div class="option-title">Features</div>
+                    </div>
+                    <div class="nev-option ftc">
+                        <div class="option-icon"><i class="i fa-solid fa-box-archive"></i></div>
+                        <div class="option-title">Form, Table and Charts</div>
+                    </div>
+                    <div class="nev-option aw">
+                        <div class="option-icon"><i class="i fa-solid fa-soap"></i></div>
+                        <div class="option-title">Apps and Widgets</div>
+                    </div>
+                    <div class="nev-option authentication">
+                        <div class="option-icon"><i class="i fa-solid fa-circle-check"></i></div>
+                        <div class="option-title">Authentication</div>
+                    </div>
+                    <div class="nev-option miscellaneous">
+                        <div class="option-icon"><i class="i fa-solid fa-circle-exclamation"></i></div>
+                        <div class="option-title">Miscellaneous</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="universe">
-        <div class="top-bar">
-            <div class="top-left">
-                <div class="nev-btn selected">
-                    <i class="fa-solid fa-bars-staggered"></i>
+        <div class="universe">
+            <div class="top-bar">
+                <div class="top-left">
+                    <div class="nev-btn selected">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </div>
+                    <div class="page-title"></div>
                 </div>
-                <div class="page-title"></div>
+                <div class="top right">
+                    <div class="time">--:--:--</div>
+                    <div class="date">-- -- -- --</div>
+                </div>
             </div>
-            <div class="top right">
-                <div class="time">--:--:--</div>
-                <div class="date">-- -- -- --</div>
-            </div>
-        </div>

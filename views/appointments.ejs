@@ -1,14 +1,28 @@
 <%- include('include/header') %>
     <%- include('include/nev') %>
-    <div class="appointments-space">
-        <a href="/appointments/createappointment" class="btn">New Appointment</a>
-        <div class="card">
-            <div class="card-title">Appointments</div>
-            <div class="card-backdrop">
-                <table class="full-card">
-                 
-                </table>
+        <div class="appointments-space">
+            <a href="/appointments/createappointment" class="btn">New Appointment</a>
+            <div class="card">
+                <div class="card-title">Appointments</div>
+                <div class="card-backdrop">
+                    <table class="full-card">
+                        <% appointments.forEach(appointment=> { %>
+                            <tr>
+                                <td class="image">
+                                    <image src="<%= appointment.clientInfo.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                </td>
+                                <td class="name">
+                                    <div class="title">
+                                        <%= appointment.clientInfo.name %>
+                                    </div>
+                                    <div class="sub-title">
+                                        <%= appointment.clientInfo.email %>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <%- include('include/footer') %>
+        <%- include('include/footer') %>

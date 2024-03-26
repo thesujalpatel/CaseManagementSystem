@@ -1,24 +1,49 @@
 <%- include('include/header') %>
-
-    <form action="/api/cases" method="post" name="addcases" id="addcases">
-        <select name="clientname">
-            <option selected disabled hidden>Select client</option>
-            <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>">
-                    <%= users.username %>
-                </option>
-                <% }) %>
-        </select>
-        <select name="attorneyname">
-            <option selected disabled hidden>Select attorney</option>
-            <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>">
-                    <%= users.username %>
-                </option>
-                <% }) %>
-        </select>
-        <input type="text" name="type" placeholder="Case type" required>
-        <textarea name="description" id="description" placeholder="Description"></textarea>
-        <input type="submit" value="Submit">
-    </form>
-    <%- include('include/footer') %>
+<div class="back">
+    <i class="fa-solid fa-circle-left"></i>Back
+  </div>
+    <div class="universe">
+        <div class="form-con">
+            <form action="/api/cases" class="form" method="post" name="addcases" id="addcases">
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <select name="clientname" class="input">
+                        <option selected disabled hidden>Select client</option>
+                        <% users.forEach((users)=> { %>
+                            <option value="<%= users.username %>">
+                                <%= users.username %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"><i class="fa-solid fa-gavel fa-lg"></i></div>
+                    <select name="attorneyname" class="input">
+                        <option selected disabled hidden>Select attorney</option>
+                        <% users.forEach((users)=> { %>
+                            <option value="<%= users.username %>">
+                                <%= users.username %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-puzzle-piece fa-lg"></i></div>
+                    <input type="text" class="input" name="type" placeholder="Case type" required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"><i class="fa-solid fa-quote-left fa-lg"></i></div>
+                    <textarea name="description" class="input" id="description" placeholder="Description"></textarea>
+                </div>
+                <input type="submit" value="Create Case">
+            </form>
+            <div class="side-form">
+                <div class="sf-con">
+                    <div class="sf-title">
+                        <i class="fa-solid fa-circle-plus fa-xl"></i>
+                        <h2>Create Case</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('include/footer') %>
