@@ -1,0 +1,16 @@
+  "colors": {
+    "background": "#dfd7bf",
+    "sub_canvas": "#79155b",
+    "canvas": "#f5f5dc",
+    "primary": "#1f1717",
+    "secondary": "#ce5a67",
+    "tertiary": "#f4bf96"
+  },
+"colors": {
+    "background": "#ffffff",
+    "sub_canvas": "#27272b",
+    "canvas": "#dce6e8",
+    "primary": "#1f2a2d",
+    "secondary": "#0080aa",
+    "tertiary": "#90e0ef"
+  },

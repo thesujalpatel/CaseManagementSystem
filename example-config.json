@@ -1,7 +1,16 @@
 {
+  "domain": "http://localhost",
   "port": "2410",
   "mongo_uri": "mongodb://127.0.0.1:27017/crypto",
   "devloper_name": "Sujal Patel",
   "website_name": "Crypto",
-  "session_secret": "the_super_secret_key"
+  "session_secret": "the_super_secret_key",
+  "colors": {
+    "background": "#ffffff",
+    "sub_canvas": "#27272b",
+    "canvas": "#dce6e8",
+    "primary": "#1f2a2d",
+    "secondary": "#0080aa",
+    "tertiary": "#90e0ef"
+  }
 }

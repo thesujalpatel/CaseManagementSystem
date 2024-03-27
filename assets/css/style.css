@@ -431,6 +431,7 @@ i {
   padding-top: 6px;
   background-color: var(--canvas);
   text-wrap: nowrap;
+  overflow: scroll;
 }
 
 .nev-sec {
@@ -491,7 +492,7 @@ i {
   padding: 8px;
   margin: 9px;
   color: var(--primary);
-  background-color: var(--tertiary);
+  background-color: var(--background);
   border-radius: 20px;
   transition: 0.2s all linear;
 }
