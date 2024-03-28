@@ -2,13 +2,27 @@
 <!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="katman_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 841.89 595.28" style="enable-background:new 0 0 841.89 595.28;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#0080aa;}
-	.st1{fill:#90e0ef;}
-	.st2{fill:#1f2a2d;}
-	.st3{fill:#1f2a2d;}
-	.st4{fill:#90e0ef;}
-</style>
+  <style type="text/css">
+        .st0 {
+            fill: var(--secondary);
+        }
+
+        .st1 {
+            fill: var(--tertiary);
+        }
+
+        .st2 {
+            fill: var(--primary);
+        }
+
+        .st3 {
+            fill: var(--primary);
+        }
+
+        .st4 {
+            fill: var(--tertiary);
+        }
+    </style>
 <path class="st0" d="M349.39,395.64c-12.94-13.03-23.18-28.48-30.14-45.48c-6.96-16.99-10.49-35.19-10.41-53.56
 	c-0.03-18.36,3.59-36.53,10.67-53.47c7.08-16.94,17.47-32.29,30.55-45.17c9.9-10.37,15.35-24.19,15.2-38.52
 	c-0.15-14.33-5.89-28.04-16-38.2c-10.11-10.16-23.79-15.97-38.12-16.19c-14.33-0.22-28.18,5.16-38.6,15.01

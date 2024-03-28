@@ -43,9 +43,11 @@ exports.createuser = (req, res) => {
               req.body.phone2 == "" ? null : req.body.phone2,
             ],
             pfp: {
-              data: req.file.filename,
               contentType: path.extname(req.file.originalname),
-              imageUrl: "uploads/" + req.file.filename,
+              imageUrl: "/uploads/" + req.file.filename,
+            },
+            settings: {
+              theme: "0",
             },
             createDate: Date.now(),
             updateDate: null,
@@ -110,9 +112,12 @@ exports.signin = (req, res) => {
       res.status(404).send({ message: "User not found" });
     } else {
       var isAuth = bcrypt.compareSync(req.body.password, data.password);
+
       if (isAuth) {
         req.session.isAuth = true;
         req.session.userId = data._id;
+        res.cookie("theme", data.settings.theme);
+        res.cookie("menuopen", true);
         if (data.role === "admin") {
           req.session.isAdmin = true;
         }

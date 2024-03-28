@@ -1,6 +1,7 @@
 <%- include('include/header') %>
     <%- include('include/nev') %>
         <div class="cases-space">
+            <a href="/cases/createcase">Add Case</a>
             <div class="card">
                 <div class="card-title">Cases</div>
                 <div class="card-backdrop">
@@ -8,7 +9,7 @@
                         <% cases.forEach((caseItem)=> { %>
                             <tr>
                                 <td class="image">
-                                    <image src="<%= caseItem.clientInfo.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                    <image lsrc="<%= caseItem.clientInfo.pfp.imageUrl %>" src="<%= config.loading %>"alt="PFP" class="img"></image>
                                 </td>
                                 <td class="name">
                                     <div class="title">

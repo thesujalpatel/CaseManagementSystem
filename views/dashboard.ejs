@@ -55,7 +55,8 @@
                         <% if (caseItem.status=="ongoing" ) { %>
                             <tr>
                                 <td class="image">
-                                    <image src="<%= caseItem.clientInfo.pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                    <image lsrc="<%= caseItem.clientInfo.pfp.imageUrl %>" src="<%= config.loading %>"
+                                        alt="PFP" class="img" loading="lazy"></image>
                                 </td>
                                 <td class="name">
                                     <div class="title">
@@ -110,7 +111,8 @@
                         <% for( let index=cases.length-1; index>= 0 ; index-- ) { %>
                             <tr>
                                 <td class="image">
-                                    <img src="<%= cases[index].clientInfo.pfp.imageUrl %>" alt="img" class="img">
+                                    <img lsrc="<%= cases[index].clientInfo.pfp.imageUrl %>" src="<%= config.loading %>"
+                                        alt="img" class="img" loading="lazy">
                                     </image>
                                 </td>
                                 <td class="matter-name">
@@ -212,7 +214,8 @@
                         <% for( let index=users.length-1; index>= 0; index-- ) { %>
                             <tr>
                                 <td class="image">
-                                    <img src="<%= users[index].pfp.imageUrl %>" alt="PFP" class="img"></image>
+                                    <img lsrc="<%= users[index].pfp.imageUrl %>" src="<%= config.loading %>" class="img"
+                                        loading="lazy"></image>
                                 </td>
                                 <td class="matter-name">
                                     <div class="title">

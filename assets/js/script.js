@@ -4,14 +4,37 @@ fetch("/config")
     var port = config.port;
     var colors = config.colors;
 
-    const background = colors.background;
-    const sub_canvas = colors.sub_canvas;
-    const canvas = colors.canvas;
-    const primary = colors.primary;
-    const secondary = colors.secondary;
-    const tertiary = colors.tertiary;
+    const root = document.documentElement;
+    const background = getComputedStyle(root).getPropertyValue("--background");
+    const sub_canvas = getComputedStyle(root).getPropertyValue("--sub_canvas");
+    const canvas = getComputedStyle(root).getPropertyValue("--canvas");
+    const primary = getComputedStyle(root).getPropertyValue("--primary");
+    const secondary = getComputedStyle(root).getPropertyValue("--secondary");
+    const tertiary = getComputedStyle(root).getPropertyValue("--tertiary");
 
-    var menu_open = true;
+    function getCookieValue(cookieName) {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(cookieName + "=")) {
+          return cookie.substring(cookieName.length + 1);
+        }
+      }
+      return null;
+    }
+    $(function () {
+      $.each(document.images, function () {
+        var this_image = this;
+        var lsrc = $(this_image).attr("lsrc") || "";
+        if (lsrc.length > 0) {
+          var img = new Image();
+          img.src = lsrc;
+          img.onload = function () {
+            this_image.src = this.src;
+          };
+        }
+      });
+    });
 
     $(".back").click(function () {
       location.href = document.referrer;
@@ -22,6 +45,8 @@ fetch("/config")
     // Menu botton animation
     var nevListItems = $(".nev");
     var menubtn = $(".nev-btn");
+
+    var menu_open = getCookieValue("menuopen") == "true" ? true : false;
     menubtn.click(function () {
       if (menu_open) {
         $(".web-name").fadeTo(190, 0).hide(190);
@@ -29,38 +54,32 @@ fetch("/config")
         $(".div").fadeTo(500, 0).hide(500);
         $(".option-title").fadeTo(400, 0).hide();
         nevListItems.animate({ width: "40px" }, 500);
-        $(".spacial").show(500).animate({ margin: "0" },500).fadeTo(500, 1);
+        $(".spacial").show(500).fadeTo(500, 1);
         $(".nev-btn").removeClass("selected");
         menu_open = false;
+        document.cookie = `menuopen=${menu_open}`;
 
         setTimeout(function () {
           $(".logo-img").css({
-            width: "25px",
-            height: "25px",
-          });
-          $(".spacial").css({
-            "background-color": "transparent",
+            width: "30px",
+            height: "30px",
           });
         }, 500);
       } else {
-        $(".spacial")
-        .animate({
-          margin: "10px 20px 20px 20px",
-        })
-        .show(500)
-        .fadeTo(500, 1)
-          .css({ "background-color": background });
+        $(".spacial").show(500).fadeTo(500, 1);
 
         $(".option-title").show(500).fadeTo(500, 1);
         $(".div").show(500).fadeTo(500, 1);
         $(".nev-sec").show(500).fadeTo(500, 1);
         $(".logo-img").animate({
-          width: "50px",
-          height: "50px",
+          width: "60px",
+          height: "60px",
         });
         $(".nev-btn").addClass("selected");
         nevListItems.animate({ width: "250px" }, 500);
         menu_open = true;
+
+        document.cookie = `menuopen=${menu_open}`;
 
         setTimeout(function () {
           $(".web-name").show(250);
@@ -76,6 +95,7 @@ fetch("/config")
       $(this).parent().css({ "border-color": "transparent" });
       $(this).parent().find(".ic").css({ "border-right-color": "transparent" });
     });
+
     // Operation for edit case
     $("#updatecases").submit(function (event) {
       event.preventDefault();
@@ -84,6 +104,7 @@ fetch("/config")
       $.map(data_array, function (n, i) {
         data[n["name"]] = n["value"];
       });
+      console.log(data);
       var request = {
         url: `http://localhost:${port}/api/cases/${data.id}`,
         method: "PUT",
@@ -109,7 +130,9 @@ fetch("/config")
       }
     });
     $("#addcases").submit(function (event) {
+      event.preventDefault();
       alert("Case Added Successfully");
+      return (location.href = document.referrer);
     });
 
     // Signout operation

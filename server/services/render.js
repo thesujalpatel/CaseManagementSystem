@@ -1,9 +1,10 @@
 const userDB = require("../model/userdb");
+const { themes } = require("../../settings.json");
 const axios = require("axios");
 const config = require("../../config.json");
 
 const getAllData = async (req, res, render) => {
-  var passingData = (data) => {
+  const passingData = (data) => {
     return {
       username: data.username,
       name: data.name,
@@ -13,75 +14,108 @@ const getAllData = async (req, res, render) => {
     };
   };
 
-  const [casesResponse, userResponse, appointmentResponse] = await Promise.all([
-    axios.get(`http://localhost:${config.port}/api/cases`, {
-      params: { caseid: req.query.caseid },
-    }),
-    axios.get(`http://localhost:${config.port}/api/users`, {
-      params: { userid: req.query.userid },
-    }),
-    axios.get(`http://localhost:${config.port}/api/appointments`, {
-      params: { appointmentid: req.query.appointmentid },
-    }),
+  const getCasesData = async () => {
+    const casesResponse = await axios.get(
+      `http://localhost:${config.port}/api/cases`,
+      {
+        params: { caseid: req.query.caseid },
+      }
+    );
+    if (!req.query.caseid) {
+      const casesData = casesResponse.data.map(async (data) => {
+        const clientinfo = await userDB.findOne({ username: data.client });
+        const attorneyinfo = await userDB.findOne({ username: data.attorney });
+
+        data.clientInfo = passingData(clientinfo);
+        data.attorneyInfo = passingData(attorneyinfo);
+
+        return data;
+      });
+      return Promise.all(casesData);
+    } else {
+      const clientinfo = await userDB.findOne({
+        username: casesResponse.data.client,
+      });
+      const attorneyinfo = await userDB.findOne({
+        username: casesResponse.data.attorney,
+      });
+
+      casesResponse.data.clientInfo = passingData(clientinfo);
+      casesResponse.data.attorneyInfo = passingData(attorneyinfo);
+
+      return casesResponse.data;
+    }
+  };
+
+  const getUsersData = async () => {
+    const userResponse = await axios.get(
+      `http://localhost:${config.port}/api/users`,
+      {
+        params: { userid: req.query.userid },
+      }
+    );
+
+    return userResponse.data;
+  };
+
+  const getAppointmentsData = async () => {
+    const appointmentResponse = await axios.get(
+      `http://localhost:${config.port}/api/appointments`,
+      {
+        params: { appointmentid: req.query.appointmentid },
+      }
+    );
+
+    const appointmentsData = appointmentResponse.data.map(async (data) => {
+      const clientinfo = await userDB.findOne({ username: data.client });
+      const attorneyinfo = await userDB.findOne({ username: data.attorney });
+
+      data.clientInfo = passingData(clientinfo);
+      data.attorneyInfo = passingData(attorneyinfo);
+
+      return data;
+    });
+
+    return Promise.all(appointmentsData);
+  };
+
+  const [casesData, userData, appointmentsData] = await Promise.all([
+    getCasesData(),
+    getUsersData(),
+    getAppointmentsData(),
   ]);
 
-  if (req.query.caseid) {
-    const data = casesResponse.data;
-    userDB.findOne({ username: data.client }).then((clientinfo) => {
-      data.clientInfo = passingData(clientinfo);
-    });
-    userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
-      data.attorneyInfo = passingData(attorneyinfo);
-    });
-  } else {
-    casesResponse.data.forEach((data) => {
-      userDB.findOne({ username: data.client }).then((clientinfo) => {
-        data.clientInfo = passingData(clientinfo);
-      });
-      userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
-        data.attorneyInfo = passingData(attorneyinfo);
-      });
-    });
-  }
-  if (req.query.appointmentid) {
-    const data = appointmentResponse.data;
-    userDB.findOne({ username: data.client }).then((clientinfo) => {
-      data.clientInfo = passingData(clientinfo);
-    });
-    userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
-      data.attorneyInfo = passingData(attorneyinfo);
-    });
-  } else {
-    appointmentResponse.data.forEach((data) => {
-      userDB.findOne({ username: data.client }).then((clientinfo) => {
-        data.clientInfo = passingData(clientinfo);
-      });
-      userDB.findOne({ username: data.attorney }).then((attorneyinfo) => {
-        data.attorneyInfo = passingData(attorneyinfo);
-      });
-    });
-  }
   userDB.findById(req.session.userId).then((firstperson) => {
+    if (!req.cookies.theme) {
+      res.cookie("theme", 0);
+    }
+    if (req.session.isAuth) {
+      res.cookie("theme", firstperson.settings.theme);
+    }
+    var theme = themes[req.cookies.theme] || themes[0];
+    var menu_open = req.cookies.menuopen == "true" ? true : false;
     res.render(render, {
-      cases: casesResponse.data,
-      users: userResponse.data,
-      appointments: appointmentResponse.data,
+      cases: casesData,
+      users: userData,
+      appointments: appointmentsData,
       firstperson: firstperson,
       config: config,
+      theme: theme,
+      menuopen: menu_open,
     });
   });
 };
 
 exports.landing = (req, res) => {
-  res.render("landing", { config: config });
+  getAllData(req, res, "landing");
 };
 
 exports.signup = (req, res) => {
-  res.render("signup", { config: config });
+  getAllData(req, res, "signup");
 };
 
 exports.signin = (req, res) => {
-  res.render("signin", { config: config });
+  getAllData(req, res, "signin");
 };
 
 exports.dashboard = (req, res) => {

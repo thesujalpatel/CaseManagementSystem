@@ -3,6 +3,7 @@ const session = require("express-session");
 const route = express.Router();
 const config = require("../../config.json");
 const mongoSession = require("connect-mongodb-session")(session);
+const cookieParser = require("cookie-parser");
 
 const services = require("../services/render");
 
@@ -38,11 +39,17 @@ const isAdmin = (req, res, next) => {
     res.redirect("/dashboard");
   }
 };
+route.use(cookieParser());
+
 route.get("/", services.landing);
 route.get("/dashboard", isAuth, services.dashboard);
 
 route.get("/appointments", isAuth, services.appointments);
-route.get("/appointments/createappointment",isAuth,services.createappointment);
+route.get(
+  "/appointments/createappointment",
+  isAuth,
+  services.createappointment
+);
 
 route.get("/cases", isAuth, services.cases);
 route.get("/cases/createcase", isAuth, services.createcase);
@@ -78,7 +85,7 @@ route.post("/api/signout", userController.signout);
 route.get("/config", configController.config);
 
 route.use((req, res) => {
-  res.status(404).render("404");
+  res.status(404).send("404 Page Not Found");
 });
 
 module.exports = route;
