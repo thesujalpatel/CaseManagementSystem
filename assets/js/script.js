@@ -46,7 +46,8 @@ fetch("/config")
     var nevListItems = $(".nev");
     var menubtn = $(".nev-btn");
 
-    var menu_open = getCookieValue("menuopen") == "true" ? true : false;
+    var menu_open = true
+    //  getCookieValue("menuopen") == "true" ? true : false;
     menubtn.click(function () {
       if (menu_open) {
         $(".web-name").fadeTo(190, 0).hide(190);

@@ -1,16 +1,40 @@
 <%- include('include/header') %>
-    <form action="/api/appointments" method="post" name="addcases" id="addcases">
-        <select name="attorney">
-            <option selected disabled hidden>Select attorney</option>
-            <% users.forEach((users)=> { %>
-                <option value="<%= users.username %>">
-                    <%= users.username%>
-                </option>
-                <% }) %>
-        </select>
-        <input type="hidden" name="client" value="<%= firstperson.username %>" required>
-        <input type="datetime-local" name="date" required>
-        <textarea name="description" id="description" placeholder="Description"></textarea>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="back">
+        <i class="fa-solid fa-circle-left"></i>Back
+    </div>
+    <div class="universe">
+        <div class="form-con">
+            <form action="/api/appointments" class="form" method="post" name="bookappointment" id="bookappointment">
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <select name="attorney" class="input">
+                        <option selected disabled hidden>Select attorney</option>
+                        <% users.forEach((users)=> { %>
+                            <option value="<%= users.username %>">
+                                <%= users.username%>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+                <input type="hidden" name="client" value="<%= firstperson.username %>" required>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <input type="datetime-local" class="input" name="date" required>
+                </div>
+                <div class="ii-con">
+                    <div class="ic"> <i class="fa-solid fa-user fa-lg"></i></div>
+                    <textarea name="description" class="input" id="description" placeholder="Description"></textarea>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="side-form">
+                <div class="sf-con">
+                    <div class="sf-title">
+                        <i class="fa-solid fa-circle-plus fa-xl"></i>
+                        <h2>Book Appointment</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <%- include('include/footer') %>
