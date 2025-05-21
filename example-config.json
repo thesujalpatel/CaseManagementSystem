@@ -1,6 +1,6 @@
 {
   "domain": "http://localhost",
-  "port": "2410",
+  "port": "3000",
   "mongo_uri": "mongodb://127.0.0.1:27017/crypto",
   "devloper_name": "Sujal Patel",
   "website_name": "Crypto",
